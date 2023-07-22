@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E674862F2A6BAFD400CAEF91 /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674862E2A6BAFD400CAEF91 /* NumbersOnly.swift */; };
+		E67486312A6BB59300CAEF91 /* UnivInfoSignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67486302A6BB59300CAEF91 /* UnivInfoSignUpPage.swift */; };
+		E67486332A6BB5F300CAEF91 /* UserInfoSignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67486322A6BB5F300CAEF91 /* UserInfoSignUpPage.swift */; };
+		E67486352A6BC30E00CAEF91 /* UnivVerificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67486342A6BC30E00CAEF91 /* UnivVerificationPage.swift */; };
 		E67F951D2A6A9A9500FF3EF8 /* UniMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F951C2A6A9A9500FF3EF8 /* UniMateApp.swift */; };
 		E67F951F2A6A9A9500FF3EF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */; };
 		E67F95212A6A9A9600FF3EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E67F95202A6A9A9600FF3EF8 /* Assets.xcassets */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E674862E2A6BAFD400CAEF91 /* NumbersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOnly.swift; sourceTree = "<group>"; };
+		E67486302A6BB59300CAEF91 /* UnivInfoSignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnivInfoSignUpPage.swift; sourceTree = "<group>"; };
+		E67486322A6BB5F300CAEF91 /* UserInfoSignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSignUpPage.swift; sourceTree = "<group>"; };
+		E67486342A6BC30E00CAEF91 /* UnivVerificationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnivVerificationPage.swift; sourceTree = "<group>"; };
 		E67F95192A6A9A9500FF3EF8 /* UniMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E67F951C2A6A9A9500FF3EF8 /* UniMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniMateApp.swift; sourceTree = "<group>"; };
 		E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +67,7 @@
 				E6B04C1A2A6AA95600195B6A /* Login */,
 				E67F951C2A6A9A9500FF3EF8 /* UniMateApp.swift */,
 				E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */,
+				E674862E2A6BAFD400CAEF91 /* NumbersOnly.swift */,
 				E67F95202A6A9A9600FF3EF8 /* Assets.xcassets */,
 				E67F95222A6A9A9600FF3EF8 /* Preview Content */,
 			);
@@ -77,6 +86,9 @@
 			isa = PBXGroup;
 			children = (
 				E6B04C1B2A6AA96B00195B6A /* LoginPage.swift */,
+				E67486302A6BB59300CAEF91 /* UnivInfoSignUpPage.swift */,
+				E67486322A6BB5F300CAEF91 /* UserInfoSignUpPage.swift */,
+				E67486342A6BC30E00CAEF91 /* UnivVerificationPage.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -153,8 +165,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E67F951F2A6A9A9500FF3EF8 /* ContentView.swift in Sources */,
+				E67486332A6BB5F300CAEF91 /* UserInfoSignUpPage.swift in Sources */,
 				E6B04C1C2A6AA96B00195B6A /* LoginPage.swift in Sources */,
+				E67486352A6BC30E00CAEF91 /* UnivVerificationPage.swift in Sources */,
+				E67486312A6BB59300CAEF91 /* UnivInfoSignUpPage.swift in Sources */,
 				E67F951D2A6A9A9500FF3EF8 /* UniMateApp.swift in Sources */,
+				E674862F2A6BAFD400CAEF91 /* NumbersOnly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

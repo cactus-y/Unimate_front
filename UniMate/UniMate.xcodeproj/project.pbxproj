@@ -50,7 +50,7 @@
 		E6B04C182A6A9C9D00195B6A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E6B04C172A6A9C9D00195B6A /* .gitignore */; };
 		E6B04C1C2A6AA96B00195B6A /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B04C1B2A6AA96B00195B6A /* LoginPage.swift */; };
 		E6F53C3E2A6BFAFC0049CDE0 /* LeaderBoardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F53C3D2A6BFAFC0049CDE0 /* LeaderBoardPage.swift */; };
-		E6F53C402A6C04440049CDE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6F53C3F2A6C04440049CDE0 /* GoogleService-Info.plist */; };
+		E6F53C422A6C0B150049CDE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6F53C412A6C0B150049CDE0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +71,7 @@
 		E6B04C172A6A9C9D00195B6A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E6B04C1B2A6AA96B00195B6A /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		E6F53C3D2A6BFAFC0049CDE0 /* LeaderBoardPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardPage.swift; sourceTree = "<group>"; };
-		E6F53C3F2A6C04440049CDE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E6F53C412A6C0B150049CDE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +151,7 @@
 				E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */,
 				E674862E2A6BAFD400CAEF91 /* NumbersOnly.swift */,
 				E67F95202A6A9A9600FF3EF8 /* Assets.xcassets */,
-				E6F53C3F2A6C04440049CDE0 /* GoogleService-Info.plist */,
+				E6F53C412A6C0B150049CDE0 /* GoogleService-Info.plist */,
 				E67F95222A6A9A9600FF3EF8 /* Preview Content */,
 			);
 			path = UniMate;
@@ -267,7 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E67F95242A6A9A9600FF3EF8 /* Preview Assets.xcassets in Resources */,
-				E6F53C402A6C04440049CDE0 /* GoogleService-Info.plist in Resources */,
+				E6F53C422A6C0B150049CDE0 /* GoogleService-Info.plist in Resources */,
 				E6B04C182A6A9C9D00195B6A /* .gitignore in Resources */,
 				E67F95212A6A9A9600FF3EF8 /* Assets.xcassets in Resources */,
 			);

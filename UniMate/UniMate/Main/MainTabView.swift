@@ -9,32 +9,35 @@ import SwiftUI
 
 struct MainTabView: View {
     var body: some View {
-        TabView {
-            BoardView()
-                .tabItem {
-                    Image(systemName: "house")
-                }
-            
-            LeaderBoardView()
-                .tabItem {
-                    Image(systemName: "list.clipboard")
-                }
-            
-            MessageView()
-                .tabItem {
-                    Image(systemName: "paperplane")
-                }
-            
-            NotificationView()
-                .tabItem {
-                    Image(systemName: "bell")
-                }
-            
-            UserView()
-                .tabItem {
-                    Image(systemName: "person")
-                }
+        NavigationView {
+            TabView {
+                BoardView()
+                    .tabItem {
+                        Image(systemName: "house")
+                    }
+                
+                LeaderBoardView()
+                    .tabItem {
+                        Image(systemName: "list.clipboard")
+                    }
+                
+                MessageView()
+                    .tabItem {
+                        Image(systemName: "paperplane")
+                    }
+                
+                NotificationView()
+                    .tabItem {
+                        Image(systemName: "bell")
+                    }
+                
+                UserView()
+                    .tabItem {
+                        Image(systemName: "person")
+                    }
+            }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

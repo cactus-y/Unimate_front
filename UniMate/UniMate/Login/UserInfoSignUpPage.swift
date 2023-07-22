@@ -13,7 +13,7 @@ struct UserInfoSignUpView: View {
     @State var userNickname: String = ""
     @State var password: String = ""
     @State var passwordVerification: String = ""
-    @State private var isNextPagePresented: Bool = false
+    
     
     var isNextButtonDisabled: Bool {
         if userNickname.isEmpty || password.isEmpty {
@@ -26,8 +26,9 @@ struct UserInfoSignUpView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading,spacing: 15) {
-                Spacer()
+                
                 Text("닉네임")
+                    .bold()
                     .font(.title)
                     .foregroundColor(.black)
                     .frame(alignment: .leading)
@@ -45,6 +46,7 @@ struct UserInfoSignUpView: View {
                 .padding(.horizontal)
                 
                 Text("비밀번호")
+                    .bold()
                     .font(.title)
                     .foregroundColor(.black)
                     .frame(alignment: .leading)
@@ -62,6 +64,7 @@ struct UserInfoSignUpView: View {
                 .padding(.horizontal)
                 
                 Text("비밀번호 확인")
+                    .bold()
                     .font(.title)
                     .foregroundColor(.black)
                     .frame(alignment: .leading)
@@ -96,22 +99,31 @@ struct UserInfoSignUpView: View {
                 
                 Spacer()
             }
-        }
-        .navigationBarBackButtonHidden(true)
-        .navigationTitle("회원가입")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    print("go back to univ info sign up page")
-                    dismiss()
-                } label: {
-                    HStack {
-                        Image(systemName: "chevron.backward")
-//                        Text("Back")
+            .padding(10)
+            
+            .navigationTitle("회원가입")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        print("go back to univ info sign up page")
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Image(systemName: "chevron.backward")
+                            //                        Text("Back")
+                        }
                     }
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
+        
+    }
+}
+
+struct UserInfo_Preview: PreviewProvider {
+    static var previews: some View {
+        UserInfoSignUpView()
     }
 }

@@ -132,9 +132,7 @@ struct LoginView: View {
                 Spacer()
 
                 if loginSuccess {
-                    NavigationLink(destination: MainTabView()) {
-                        
-                    }
+                    NavigationLink(destination: MainTabView(), isActive: self.$loginSuccess, label: {})
                 }
             }
         }

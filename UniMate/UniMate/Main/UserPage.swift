@@ -13,6 +13,8 @@ struct UserView: View {
             VStack {
                 Spacer()
             }
+            .navigationTitle("내 정보")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

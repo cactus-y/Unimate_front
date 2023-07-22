@@ -13,6 +13,8 @@ struct NotificationView: View {
             VStack {
                 Spacer()
             }
+            .navigationTitle("알림")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

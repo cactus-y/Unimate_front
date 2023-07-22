@@ -13,6 +13,8 @@ struct MessageView: View {
             VStack {
                 Spacer()
             }
+            .navigationTitle("쪽지함")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

@@ -13,6 +13,9 @@ struct BoardView: View {
             VStack {
                 Spacer()
             }
+            .navigationTitle("게시판")
+            .navigationBarTitleDisplayMode(.inline)
+
         }
     }
 }

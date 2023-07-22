@@ -13,6 +13,8 @@ struct LeaderBoardView: View {
             VStack {
                 Spacer()
             }
+            .navigationTitle("대학별 랭킹")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

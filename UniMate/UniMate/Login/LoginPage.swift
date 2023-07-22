@@ -29,11 +29,11 @@ extension UIColor {
 }
 
 struct LoginView: View {
-    @State var name: String = ""
+    @State var userEmail: String = ""
     @State var password: String = ""
-    @State var showPassword: Bool = false
+    @State private var isPresented = false
     var isSignInButtonDisabled: Bool {
-        [name, password].contains(where: \.isEmpty)
+        [userEmail, password].contains(where: \.isEmpty)
     }
     
     var body: some View {
@@ -45,9 +45,9 @@ struct LoginView: View {
             
             Spacer()
             
-            TextField("Name",
-                      text: $name,
-                      prompt: Text("아이디").foregroundColor(.black)
+            TextField("UserEmail",
+                      text: $userEmail,
+                      prompt: Text("이메일").foregroundColor(Color(UIColor(hexCode: "665E5E")))
             )
             .padding(15)
             .background(Color(UIColor(hexCode: "DCD7D7")))
@@ -55,38 +55,40 @@ struct LoginView: View {
             .padding(.horizontal)
             
             
-            Group {
-                if showPassword {
-                    TextField("Password",
-                              text: $password,
-                              prompt: Text("비밀번호").foregroundColor(.black)
-                              
-                    )
-                } else {
-                    SecureField("Password",
-                                text: $password,
-                                prompt: Text("비밀번호").foregroundColor(.black)
-                    )
-                    
-                }
-                
-            }
+            SecureField("Password",
+                        text: $password,
+                        prompt: Text("비밀번호").foregroundColor(Color(UIColor(hexCode: "665E5E")))
+            )
+            
+//            Group {
+//                if showPassword {
+//                    TextField("Password",
+//                              text: $password,
+//                              prompt: Text("비밀번호").foregroundColor(.black)
+//
+//                    )
+//                } else {
+//
+//
+//                }
+//
+//            }
             .padding(15)
             .background(Color(UIColor(hexCode: "DCD7D7")))
             .cornerRadius(20)
             .padding(.horizontal)
-            .overlay(
-    
-                Button {
-                    showPassword.toggle()
-                } label: {
-                    Image(systemName: showPassword ? "eye.slash" : "eye")
-                        .foregroundColor(.black)
-                }
-                    .padding(25),
-                alignment: .trailing
-
-            )
+//            .overlay(
+//
+//                Button {
+//                    showPassword.toggle()
+//                } label: {
+//                    Image(systemName: showPassword ? "eye.slash" : "eye")
+//                        .foregroundColor(.black)
+//                }
+//                    .padding(25),
+//                alignment: .trailing
+//
+//            )
             
             
             Button {
@@ -100,19 +102,26 @@ struct LoginView: View {
             .background(
                 isSignInButtonDisabled ?
                 .gray :
-                Color(UIColor(hexCode: "5E9AD0"))
+                Color(UIColor(hexCode: "70BBF9"))
             )
             .cornerRadius(20)
             .disabled(isSignInButtonDisabled)
             .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
             
             VStack() {
-                Button {
-                    print("Move to sign up page")
-                } label: {
+                Button (action: {
+                    self.isPresented.toggle()
+                }
+                
+                , label: {
                     Text("Sign up")
                         .foregroundColor(.black)
-                }
+                        .sheet(isPresented: $isPresented, onDismiss: {
+                            print("Modal dismissed. State: \(self.isPresented)")
+                        }, content: {
+                            UnivInfoSignUpView(showModal: self.$isPresented)
+                        })
+                })
                 .padding(5)
                 
                 Button {
@@ -133,6 +142,7 @@ struct LoginView: View {
         }
     }
 }
+
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {

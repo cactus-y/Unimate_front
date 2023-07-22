@@ -83,7 +83,10 @@ struct LoginView: View {
                     alignment: .trailing
 
                 )
-                
+                if let errorMessage = errorMessage {
+                                    Text(errorMessage)
+                                        .foregroundColor(.red)
+                                }
                 Button {
                     login()
                     print("do login action")
@@ -134,14 +137,29 @@ struct LoginView: View {
     }
 
     func login() {
-        Auth.auth().signIn(withEmail: name, password: password) { result, error in
-            if result != nil {
+        Auth.auth().signIn(withEmail: name, password: password) { authResult, error in
+            if let error = error as NSError? {
+                switch error.code {
+                case AuthErrorCode.wrongPassword.rawValue:
+                    errorMessage = "비밀번호가 틀렸습니다."
+                case AuthErrorCode.invalidEmail.rawValue:
+                    errorMessage = "이메일 형식이 유효하지 않습니다."
+                case AuthErrorCode.userNotFound.rawValue:
+                    errorMessage = "해당 이메일로 등록된 계정이 없습니다."
+                case AuthErrorCode.accountExistsWithDifferentCredential.rawValue:
+                    errorMessage = "이 이메일은 이미 다른 인증 수단으로 사용 중입니다."
+                default:
+                    errorMessage = "알 수 없는 오류가 발생했습니다. 오류: \(error.localizedDescription)"
+                }
+            } else if authResult?.user != nil {
                 loginSuccess = true
+                errorMessage =  nil
             } else {
-                print(error.debugDescription)
+                errorMessage = "로그인에 실패했습니다. 잠시 후 다시 시도해주세요."
             }
         }
     }
+
 
     func register() {
         Auth.auth().createUser(withEmail: name, password: password) { result, error in

@@ -100,8 +100,6 @@ struct LoginView: View {
             .frame(height: 50)
             .frame(maxWidth: .infinity)
             .background(
-                isSignInButtonDisabled ?
-                .gray :
                 Color(UIColor(hexCode: "70BBF9"))
             )
             .cornerRadius(20)
@@ -114,7 +112,7 @@ struct LoginView: View {
                 }
                 
                 , label: {
-                    Text("Sign up")
+                    Text("회원가입")
                         .foregroundColor(.black)
                         .sheet(isPresented: $isPresented, onDismiss: {
                             print("Modal dismissed. State: \(self.isPresented)")
@@ -127,7 +125,7 @@ struct LoginView: View {
                 Button {
                     print("Find id or password")
                 } label: {
-                    Text("Forgot ID or password?")
+                    Text("비밀번호 찾기")
                         .foregroundColor(Color(UIColor(hexCode: "9F9B9B")))
                 }
             }
@@ -135,10 +133,7 @@ struct LoginView: View {
             .padding(.horizontal)
             
             
-            
             Spacer()
-            
-            
         }
     }
 }

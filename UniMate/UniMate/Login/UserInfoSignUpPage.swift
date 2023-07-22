@@ -88,8 +88,6 @@ struct UserInfoSignUpView: View {
                 .frame(height: 50)
                 .frame(maxWidth: .infinity)
                 .background(
-                    isNextButtonDisabled ?
-                    .gray :
                     Color(UIColor(hexCode: "70BBF9"))
                 )
                 .cornerRadius(20)

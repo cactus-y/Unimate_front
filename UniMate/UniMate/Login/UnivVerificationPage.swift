@@ -54,8 +54,6 @@ struct UnivVerificationView: View {
                     .frame(height: 50)
                     .frame(maxWidth: .infinity)
                     .background(
-                        isEmailButtonDisabled ?
-                        .gray :
                         Color(UIColor(hexCode: "70BBF9"))
                     )
                     .cornerRadius(20)

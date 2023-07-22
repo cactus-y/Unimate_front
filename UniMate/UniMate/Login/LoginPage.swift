@@ -1,11 +1,5 @@
-//
-//  LoginPage.swift
-//  UniMate
-//
-//  Created by 유석원 on 2023/07/21.
-//
-
 import SwiftUI
+import FirebaseAuth
 
 extension UIColor {
     convenience init(hexCode: String, alpha: CGFloat = 1.0) {
@@ -31,12 +25,146 @@ extension UIColor {
 struct LoginView: View {
     @State var userEmail: String = ""
     @State var password: String = ""
+    @State var showPassword: Bool = false
+    @State var loginSuccess: Bool = false
+    @State var errorMessage: String?
     @State private var isPresented = false
     var isSignInButtonDisabled: Bool {
         [userEmail, password].contains(where: \.isEmpty)
     }
     
     var body: some View {
+        NavigationView {
+            VStack(alignment: .center, spacing: 15) {
+                Spacer()
+
+                Image("unimate_login_logo")
+                    .aspectRatio(contentMode: .fit)
+
+                Spacer()
+
+                TextField("Name",
+                          text: $name,
+                          prompt: Text("아이디").foregroundColor(.black)
+                )
+                .padding(15)
+                .background(Color(UIColor(hexCode: "DCD7D7")))
+                .cornerRadius(20)
+                .padding(.horizontal)
+
+                Group {
+                    if showPassword {
+                        TextField("Password",
+                                  text: $password,
+                                  prompt: Text("비밀번호").foregroundColor(.black)
+
+                        )
+                    } else {
+                        SecureField("Password",
+                                    text: $password,
+                                    prompt: Text("비밀번호").foregroundColor(.black)
+                        )
+
+                    }
+                }
+                .padding(15)
+                .background(Color(UIColor(hexCode: "DCD7D7")))
+                .cornerRadius(20)
+                .padding(.horizontal)
+                .overlay(
+                    Button {
+                        showPassword.toggle()
+                    } label: {
+                        Image(systemName: showPassword ? "eye.slash" : "eye")
+                            .foregroundColor(.black)
+                    }
+                        .padding(25),
+                    alignment: .trailing
+
+                )
+                if let errorMessage = errorMessage {
+                                    Text(errorMessage)
+                                        .foregroundColor(.red)
+                                }
+                Button {
+                    login()
+                    print("do login action")
+                } label: {
+                    Text("유니메이트 로그인")
+                        .foregroundColor(.white)
+                }
+                .frame(height: 50)
+                .frame(maxWidth: .infinity)
+                .background(
+                    isSignInButtonDisabled ?
+                    .gray :
+                    Color(UIColor(hexCode: "5E9AD0"))
+                )
+                .cornerRadius(20)
+                .disabled(isSignInButtonDisabled)
+                .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
+
+                VStack() {
+                    Button {
+                        register()
+                        print("Move to sign up page")
+                    } label: {
+                        Text("Sign up")
+                            .foregroundColor(.black)
+                    }
+                    .padding(5)
+                    
+                    Button {
+                        print("Find id or password")
+                    } label: {
+                        Text("Forgot ID or password?")
+                            .foregroundColor(Color(UIColor(hexCode: "9F9B9B")))
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal)
+
+                Spacer()
+
+                if loginSuccess {
+                    NavigationLink(destination: NextView(), isActive: $loginSuccess) {
+                        EmptyView()
+                    }
+                }
+            }
+        }
+    }
+
+    func login() {
+        Auth.auth().signIn(withEmail: name, password: password) { authResult, error in
+            if let error = error as NSError? {
+                switch error.code {
+                case AuthErrorCode.wrongPassword.rawValue:
+                    errorMessage = "비밀번호가 틀렸습니다."
+                case AuthErrorCode.invalidEmail.rawValue:
+                    errorMessage = "이메일 형식이 유효하지 않습니다."
+                case AuthErrorCode.userNotFound.rawValue:
+                    errorMessage = "해당 이메일로 등록된 계정이 없습니다."
+                case AuthErrorCode.accountExistsWithDifferentCredential.rawValue:
+                    errorMessage = "이 이메일은 이미 다른 인증 수단으로 사용 중입니다."
+                default:
+                    errorMessage = "알 수 없는 오류가 발생했습니다. 오류: \(error.localizedDescription)"
+                }
+            } else if authResult?.user != nil {
+                loginSuccess = true
+                errorMessage =  nil
+            } else {
+                errorMessage = "로그인에 실패했습니다. 잠시 후 다시 시도해주세요."
+            }
+        }
+    }
+
+
+    func register() {
+        Auth.auth().createUser(withEmail: name, password: password) { result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
         VStack(alignment: .center, spacing: 15) {
             Spacer()
             
@@ -139,9 +267,16 @@ struct LoginView: View {
 }
 
 
+struct NextView: View {
+    var body: some View {
+        Text("This is the next view after login.")
+    }
+}
+
+
+
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
     }
 }
-

@@ -24,9 +24,10 @@ struct UnivInfoSignUpView: View {
             NavigationView {
                 
                 VStack(alignment: .leading,spacing: 15) {
-                    Spacer()
+                
                     
                     Text("학번 선택")
+                        .bold()
                         .font(.title)
                         .foregroundColor(.black)
                         .frame(alignment: .leading)
@@ -48,6 +49,7 @@ struct UnivInfoSignUpView: View {
                     
                     
                     Text("학교 선택")
+                        .bold()
                         .font(.title)
                         .foregroundColor(.black)
                         .frame(alignment: .leading)
@@ -101,6 +103,7 @@ struct UnivInfoSignUpView: View {
                     
                     Spacer()
                 }
+                .padding(10)
                 .navigationTitle("회원가입")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {

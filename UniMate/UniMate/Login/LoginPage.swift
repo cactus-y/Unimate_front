@@ -44,51 +44,54 @@ struct LoginView: View {
                 Spacer()
 
                 TextField("Name",
-                          text: $name,
-                          prompt: Text("아이디").foregroundColor(.black)
+                          text: $userEmail,
+                          prompt: Text("이메일").foregroundColor(Color(UIColor(hexCode: "665E5E")))
                 )
                 .padding(15)
                 .background(Color(UIColor(hexCode: "DCD7D7")))
                 .cornerRadius(20)
                 .padding(.horizontal)
+                
+                SecureField("Password",
+                            text: $password,
+                            prompt: Text("비밀번호").foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                )
 
-                Group {
-                    if showPassword {
-                        TextField("Password",
-                                  text: $password,
-                                  prompt: Text("비밀번호").foregroundColor(.black)
-
-                        )
-                    } else {
-                        SecureField("Password",
-                                    text: $password,
-                                    prompt: Text("비밀번호").foregroundColor(.black)
-                        )
-
-                    }
-                }
+//                Group {
+//                    if showPassword {
+//                        TextField("Password",
+//                                  text: $password,
+//                                  prompt: Text("비밀번호").foregroundColor(Color(UIColor(hexCode: "665E5E")))
+//
+//                        )
+//                    } else {
+//
+//
+//                    }
+//                }
                 .padding(15)
                 .background(Color(UIColor(hexCode: "DCD7D7")))
                 .cornerRadius(20)
                 .padding(.horizontal)
-                .overlay(
-                    Button {
-                        showPassword.toggle()
-                    } label: {
-                        Image(systemName: showPassword ? "eye.slash" : "eye")
-                            .foregroundColor(.black)
-                    }
-                        .padding(25),
-                    alignment: .trailing
-
-                )
+//                .overlay(
+//                    Button {
+//                        showPassword.toggle()
+//                    } label: {
+//                        Image(systemName: showPassword ? "eye.slash" : "eye")
+//                            .foregroundColor(.black)
+//                    }
+//                        .padding(25),
+//                    alignment: .trailing
+//
+//                )
                 if let errorMessage = errorMessage {
                                     Text(errorMessage)
                                         .foregroundColor(.red)
-                                }
+                }
+                
                 Button {
-                    login()
                     print("do login action")
+                    login()
                 } label: {
                     Text("유니메이트 로그인")
                         .foregroundColor(.white)
@@ -96,28 +99,30 @@ struct LoginView: View {
                 .frame(height: 50)
                 .frame(maxWidth: .infinity)
                 .background(
-                    isSignInButtonDisabled ?
-                    .gray :
-                    Color(UIColor(hexCode: "5E9AD0"))
+                    Color(UIColor(hexCode: "70BBF9"))
                 )
                 .cornerRadius(20)
                 .disabled(isSignInButtonDisabled)
                 .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
 
                 VStack() {
-                    Button {
-                        register()
-                        print("Move to sign up page")
-                    } label: {
-                        Text("Sign up")
+                    Button (action: {
+                        self.isPresented.toggle()
+                    }, label: {
+                        Text("회원가입")
                             .foregroundColor(.black)
-                    }
+                            .sheet(isPresented: $isPresented, onDismiss: {
+                                print("Modal dismissed. State: \(self.isPresented)")
+                            }, content: {
+                                UnivInfoSignUpView(showModal: self.$isPresented)
+                            })
+                    })
                     .padding(5)
                     
                     Button {
                         print("Find id or password")
                     } label: {
-                        Text("Forgot ID or password?")
+                        Text("비밀번호 찾기")
                             .foregroundColor(Color(UIColor(hexCode: "9F9B9B")))
                     }
                 }
@@ -127,8 +132,8 @@ struct LoginView: View {
                 Spacer()
 
                 if loginSuccess {
-                    NavigationLink(destination: NextView(), isActive: $loginSuccess) {
-                        EmptyView()
+                    NavigationLink(destination: MainTabView()) {
+                        
                     }
                 }
             }
@@ -136,7 +141,7 @@ struct LoginView: View {
     }
 
     func login() {
-        Auth.auth().signIn(withEmail: name, password: password) { authResult, error in
+        Auth.auth().signIn(withEmail: userEmail, password: password) { authResult, error in
             if let error = error as NSError? {
                 switch error.code {
                 case AuthErrorCode.wrongPassword.rawValue:
@@ -161,119 +166,13 @@ struct LoginView: View {
 
 
     func register() {
-        Auth.auth().createUser(withEmail: name, password: password) { result, error in
+        Auth.auth().createUser(withEmail: userEmail, password: password) { result, error in
             if error != nil {
                 print(error!.localizedDescription)
             }
-        VStack(alignment: .center, spacing: 15) {
-            Spacer()
-            
-            Image("unimate_login_logo")
-                .aspectRatio(contentMode: .fit)
-            
-            Spacer()
-            
-            TextField("UserEmail",
-                      text: $userEmail,
-                      prompt: Text("이메일").foregroundColor(Color(UIColor(hexCode: "665E5E")))
-            )
-            .padding(15)
-            .background(Color(UIColor(hexCode: "DCD7D7")))
-            .cornerRadius(20)
-            .padding(.horizontal)
-            
-            
-            SecureField("Password",
-                        text: $password,
-                        prompt: Text("비밀번호").foregroundColor(Color(UIColor(hexCode: "665E5E")))
-            )
-            
-//            Group {
-//                if showPassword {
-//                    TextField("Password",
-//                              text: $password,
-//                              prompt: Text("비밀번호").foregroundColor(.black)
-//
-//                    )
-//                } else {
-//
-//
-//                }
-//
-//            }
-            .padding(15)
-            .background(Color(UIColor(hexCode: "DCD7D7")))
-            .cornerRadius(20)
-            .padding(.horizontal)
-//            .overlay(
-//
-//                Button {
-//                    showPassword.toggle()
-//                } label: {
-//                    Image(systemName: showPassword ? "eye.slash" : "eye")
-//                        .foregroundColor(.black)
-//                }
-//                    .padding(25),
-//                alignment: .trailing
-//
-//            )
-            
-            
-            Button {
-                print("do login action")
-            } label: {
-                Text("유니메이트 로그인")
-                    .foregroundColor(.white)
-            }
-            .frame(height: 50)
-            .frame(maxWidth: .infinity)
-            .background(
-                Color(UIColor(hexCode: "70BBF9"))
-            )
-            .cornerRadius(20)
-            .disabled(isSignInButtonDisabled)
-            .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
-            
-            VStack() {
-                Button (action: {
-                    self.isPresented.toggle()
-                }
-                
-                , label: {
-                    Text("회원가입")
-                        .foregroundColor(.black)
-                        .sheet(isPresented: $isPresented, onDismiss: {
-                            print("Modal dismissed. State: \(self.isPresented)")
-                        }, content: {
-                            UnivInfoSignUpView(showModal: self.$isPresented)
-                        })
-                })
-                .padding(5)
-                
-                Button {
-                    print("Find id or password")
-                } label: {
-                    Text("비밀번호 찾기")
-                        .foregroundColor(Color(UIColor(hexCode: "9F9B9B")))
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.horizontal)
-            
-            
-            Spacer()
         }
     }
 }
-
-
-struct NextView: View {
-    var body: some View {
-        Text("This is the next view after login.")
-    }
-}
-
-
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {

@@ -16,6 +16,7 @@ struct UserInfoSignUpView: View {
     @State var passwordVerification: String = ""
     @State var showPasswordMismatchWarning: Bool = false
     @State var shakeButton: Bool = false
+    @State private var passwordWarning: String? = nil
     
     var isNextButtonDisabled: Bool {
         if userNickname.isEmpty || password.isEmpty {
@@ -26,6 +27,7 @@ struct UserInfoSignUpView: View {
     }
     
     var body: some View {
+        
         NavigationView {
             VStack(alignment: .leading,spacing: 15) {
                 
@@ -58,13 +60,24 @@ struct UserInfoSignUpView: View {
                             text: $password,
                             prompt: Text("비밀번호를 입력하세요.").foregroundColor(Color(UIColor(hexCode: "665E5E")))
                 )
+                .onChange(of: password) { newValue in
+                    if newValue.count < 6 {
+                        passwordWarning = "6자리 이상 입력해주세요"
+                    } else {
+                        passwordWarning = nil
+                    }
+                }
                 .multilineTextAlignment(TextAlignment.leading)
                 .frame(alignment: .center)
                 .padding(15)
                 .background(Color(UIColor(hexCode: "DCD7D7")))
                 .cornerRadius(20)
                 .padding(.horizontal)
-                
+                if let passwordWarning = passwordWarning {
+                    Text(passwordWarning)
+                        .foregroundColor(.red)
+                        .padding(.horizontal)
+                }
                 Text("비밀번호 확인")
                     .bold()
                     .font(.title)
@@ -89,7 +102,8 @@ struct UserInfoSignUpView: View {
                         .padding()
                 }
                 
-                NavigationLink(destination: UnivVerificationView()) {
+                
+                NavigationLink(destination: UnivVerificationView(password:$password)) {
                     Text("다음")
                         .foregroundColor(.white)
                 }
@@ -132,8 +146,9 @@ struct UserInfoSignUpView: View {
                 //            }
                 
             }
-            .navigationBarBackButtonHidden(true)
+            
         }
+        .navigationBarBackButtonHidden(true)
     }
     
     struct Shake: GeometryEffect {

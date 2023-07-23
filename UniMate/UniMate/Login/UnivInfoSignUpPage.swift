@@ -90,7 +90,7 @@ struct UnivInfoSignUpView: View {
                     Spacer()
                     
                     Button(action: {
-                        saveTempData(studentID: studentID.value, university: selectedUniversity)
+//                        saveTempData(studentID: studentID.value, university: selectedUniversity)
                         self.isActive = true
                     }) {
                         Text("다음")
@@ -124,18 +124,18 @@ struct UnivInfoSignUpView: View {
         }
     }
     
-    let ref = Database.database().reference()
-    
-    func saveTempData(studentID: String, university: String) {
-        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
-        let key = db.child("temporary").childByAutoId().key
-        db.child("temporary").child(key!).setValue(["studentID": studentID, "university": university]) { error, _ in
-            if let error = error {
-                print("Data could not be saved: \(error).")
-            } else {
-                print("Data saved successfully!")
-            }
-        }
-    }
+//    let ref = Database.database().reference()
+//
+//    func saveTempData(studentID: String, university: String) {
+//        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+//        let key = db.child("temporary").childByAutoId().key
+//        db.child("temporary").child(key!).setValue(["studentID": studentID, "university": university]) { error, _ in
+//            if let error = error {
+//                print("Data could not be saved: \(error).")
+//            } else {
+//                print("Data saved successfully!")
+//            }
+//        }
+//    }
 
 }

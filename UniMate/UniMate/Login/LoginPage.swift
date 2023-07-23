@@ -52,10 +52,13 @@ struct LoginView: View {
                 .cornerRadius(20)
                 .padding(.horizontal)
                 
+                
+
                 SecureField("Password",
                             text: $password,
                             prompt: Text("비밀번호").foregroundColor(Color(UIColor(hexCode: "665E5E")))
                 )
+                
 
 //                Group {
 //                    if showPassword {

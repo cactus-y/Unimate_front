@@ -16,7 +16,7 @@ struct UnivInfoSignUpView: View {
     
     
     var isNextButtonDisabled: Bool {
-        [studentID.value, selectedUniversity].contains(where: \.isEmpty)
+        [selectedUniversity].contains(where: \.isEmpty)
     }
     
     var body: some View {

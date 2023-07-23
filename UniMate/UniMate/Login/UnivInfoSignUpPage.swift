@@ -6,6 +6,7 @@ struct UnivInfoSignUpView: View {
     @State var universityName: String = ""
     
     @Binding var showModal: Bool
+    @State var isActive = false
     
     @ObservedObject var studentID = NumbersOnly()
     
@@ -85,7 +86,10 @@ struct UnivInfoSignUpView: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: UserInfoSignUpView()) {
+                    Button(action: {
+                        saveTempData(studentID: studentID.value, university: selectedUniversity)
+                        self.isActive = true
+                    }) {
                         Text("다음")
                             .foregroundColor(.white)
                             .frame(height: 50)
@@ -97,6 +101,8 @@ struct UnivInfoSignUpView: View {
                     }
                     .disabled(isNextButtonDisabled)
                     .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
+                    
+                    NavigationLink(destination: UserInfoSignUpView(), isActive: $isActive) { EmptyView() }
                 }
                 .padding(10)
                 .navigationTitle("회원가입")
@@ -113,14 +119,13 @@ struct UnivInfoSignUpView: View {
             }
         }
     }
+    
     let ref = Database.database().reference()
     
     func saveTempData(studentID: String, university: String) {
-        // Unique key 생성
-        let key = ref.child("temporary").childByAutoId().key
-        
-        // 키를 이용하여 데이터 저장
-        ref.child("temporary").child(key!).setValue(["studentID": studentID, "university": university]) { error, _ in
+        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        let key = db.child("temporary").childByAutoId().key
+        db.child("temporary").child(key!).setValue(["studentID": studentID, "university": university]) { error, _ in
             if let error = error {
                 print("Data could not be saved: \(error).")
             } else {

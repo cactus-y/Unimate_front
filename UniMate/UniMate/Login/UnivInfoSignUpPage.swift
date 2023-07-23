@@ -1,3 +1,4 @@
+
 import SwiftUI
 import Foundation
 import FirebaseDatabase
@@ -23,6 +24,7 @@ struct UnivInfoSignUpView: View {
         VStack(alignment: .leading, spacing: 15) {
             NavigationView {
                 VStack(alignment: .leading,spacing: 15) {
+
                     Text("학번 선택")
                         .bold()
                         .font(.title)
@@ -47,6 +49,7 @@ struct UnivInfoSignUpView: View {
                         .foregroundColor(.black)
                         .frame(alignment: .leading)
                         .padding(.horizontal)
+
                     VStack{
                         
                         TextField("UniversityName",
@@ -103,6 +106,7 @@ struct UnivInfoSignUpView: View {
                     .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
                     
                     NavigationLink(destination: UserInfoSignUpView(), isActive: $isActive) { EmptyView() }
+
                 }
                 .padding(10)
                 .navigationTitle("회원가입")
@@ -133,4 +137,5 @@ struct UnivInfoSignUpView: View {
             }
         }
     }
+
 }

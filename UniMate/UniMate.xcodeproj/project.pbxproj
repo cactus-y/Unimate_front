@@ -34,7 +34,6 @@
 		6710F2D62A6BAFBF00AD9FB7 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6710F2D52A6BAFBF00AD9FB7 /* FirebaseRemoteConfigSwift */; };
 		6710F2D82A6BAFBF00AD9FB7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6710F2D72A6BAFBF00AD9FB7 /* FirebaseStorage */; };
 		6710F2DA2A6BAFBF00AD9FB7 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 6710F2D92A6BAFBF00AD9FB7 /* FirebaseStorageCombine-Community */; };
-		675AD6982A6BB77F00EB559C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 675AD6972A6BB77F00EB559C /* GoogleService-Info.plist */; };
 		675AD6A02A6C126D00EB559C /* BoardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD69F2A6C126D00EB559C /* BoardPage.swift */; };
 		675AD6A22A6C128C00EB559C /* LeaderBoardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD6A12A6C128C00EB559C /* LeaderBoardPage.swift */; };
 		675AD6A42A6C129F00EB559C /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD6A32A6C129F00EB559C /* MainTabView.swift */; };
@@ -46,18 +45,19 @@
 		675AD6B02A6C137600EB559C /* UserInfoSignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD6AF2A6C137600EB559C /* UserInfoSignUpPage.swift */; };
 		675AD6B22A6C13AC00EB559C /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD6B12A6C13AC00EB559C /* NumbersOnly.swift */; };
 		675AD6B42A6C253A00EB559C /* UniversitiesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD6B32A6C253A00EB559C /* UniversitiesData.swift */; };
+		E60557862A6EB4FB001C2240 /* CreatePostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60557852A6EB4FB001C2240 /* CreatePostPage.swift */; };
 		E67F951D2A6A9A9500FF3EF8 /* UniMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F951C2A6A9A9500FF3EF8 /* UniMateApp.swift */; };
 		E67F951F2A6A9A9500FF3EF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */; };
 		E67F95212A6A9A9600FF3EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E67F95202A6A9A9600FF3EF8 /* Assets.xcassets */; };
 		E67F95242A6A9A9600FF3EF8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E67F95232A6A9A9600FF3EF8 /* Preview Assets.xcassets */; };
 		E6B04C182A6A9C9D00195B6A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E6B04C172A6A9C9D00195B6A /* .gitignore */; };
 		E6B04C1C2A6AA96B00195B6A /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B04C1B2A6AA96B00195B6A /* LoginPage.swift */; };
-		E6F53C3E2A6BFAFC0049CDE0 /* LeaderBoardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F53C3D2A6BFAFC0049CDE0 /* LeaderBoardPage.swift */; };
 		E6F53C422A6C0B150049CDE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6F53C412A6C0B150049CDE0 /* GoogleService-Info.plist */; };
+		E6F7E3AA2A6E5D3A00CCB8CA /* PostDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F7E3A92A6E5D3A00CCB8CA /* PostDetailPage.swift */; };
+		E6F7E3AD2A6E96B100CCB8CA /* BoardDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F7E3AC2A6E96B100CCB8CA /* BoardDetailPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		675AD6972A6BB77F00EB559C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		675AD69F2A6C126D00EB559C /* BoardPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPage.swift; sourceTree = "<group>"; };
 		675AD6A12A6C128C00EB559C /* LeaderBoardPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardPage.swift; sourceTree = "<group>"; };
 		675AD6A32A6C129F00EB559C /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -69,6 +69,7 @@
 		675AD6AF2A6C137600EB559C /* UserInfoSignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSignUpPage.swift; sourceTree = "<group>"; };
 		675AD6B12A6C13AC00EB559C /* NumbersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOnly.swift; sourceTree = "<group>"; };
 		675AD6B32A6C253A00EB559C /* UniversitiesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesData.swift; sourceTree = "<group>"; };
+		E60557852A6EB4FB001C2240 /* CreatePostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostPage.swift; sourceTree = "<group>"; };
 		E67F95192A6A9A9500FF3EF8 /* UniMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E67F951C2A6A9A9500FF3EF8 /* UniMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniMateApp.swift; sourceTree = "<group>"; };
 		E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,8 +77,9 @@
 		E67F95232A6A9A9600FF3EF8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E6B04C172A6A9C9D00195B6A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E6B04C1B2A6AA96B00195B6A /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
-		E6F53C3D2A6BFAFC0049CDE0 /* LeaderBoardPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardPage.swift; sourceTree = "<group>"; };
 		E6F53C412A6C0B150049CDE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E6F7E3A92A6E5D3A00CCB8CA /* PostDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailPage.swift; sourceTree = "<group>"; };
+		E6F7E3AC2A6E96B100CCB8CA /* BoardDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +129,9 @@
 				675AD6A52A6C12B500EB559C /* MessagePage.swift */,
 				675AD6A72A6C12D300EB559C /* NotificationPage.swift */,
 				675AD6A92A6C12E900EB559C /* UserPage.swift */,
-
+				E6F7E3A92A6E5D3A00CCB8CA /* PostDetailPage.swift */,
+				E6F7E3AC2A6E96B100CCB8CA /* BoardDetailPage.swift */,
+				E60557852A6EB4FB001C2240 /* CreatePostPage.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -156,7 +160,6 @@
 				E6B04C1A2A6AA95600195B6A /* Login */,
 				E67F951C2A6A9A9500FF3EF8 /* UniMateApp.swift */,
 				E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */,
-				E674862E2A6BAFD400CAEF91 /* NumbersOnly.swift */,
 				E67F95202A6A9A9600FF3EF8 /* Assets.xcassets */,
 				E6F53C412A6C0B150049CDE0 /* GoogleService-Info.plist */,
 				E67F95222A6A9A9600FF3EF8 /* Preview Content */,
@@ -291,20 +294,21 @@
 			files = (
 				675AD6AC2A6C132A00EB559C /* UnivInfoSignUpPage.swift in Sources */,
 				675AD6B02A6C137600EB559C /* UserInfoSignUpPage.swift in Sources */,
+				E6F7E3AA2A6E5D3A00CCB8CA /* PostDetailPage.swift in Sources */,
 				E67F951F2A6A9A9500FF3EF8 /* ContentView.swift in Sources */,
-				E67486332A6BB5F300CAEF91 /* UserInfoSignUpPage.swift in Sources */,
 				E6B04C1C2A6AA96B00195B6A /* LoginPage.swift in Sources */,
 				675AD6B22A6C13AC00EB559C /* NumbersOnly.swift in Sources */,
 				E67F951D2A6A9A9500FF3EF8 /* UniMateApp.swift in Sources */,
 				675AD6AE2A6C135000EB559C /* UnivVerificationPage.swift in Sources */,
+				E6F7E3AD2A6E96B100CCB8CA /* BoardDetailPage.swift in Sources */,
 				675AD6A62A6C12B500EB559C /* MessagePage.swift in Sources */,
 				675AD6A02A6C126D00EB559C /* BoardPage.swift in Sources */,
+				E60557862A6EB4FB001C2240 /* CreatePostPage.swift in Sources */,
 				675AD6A82A6C12D300EB559C /* NotificationPage.swift in Sources */,
 				675AD6A22A6C128C00EB559C /* LeaderBoardPage.swift in Sources */,
 				675AD6B42A6C253A00EB559C /* UniversitiesData.swift in Sources */,
 				675AD6A42A6C129F00EB559C /* MainTabView.swift in Sources */,
 				675AD6AA2A6C12E900EB559C /* UserPage.swift in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

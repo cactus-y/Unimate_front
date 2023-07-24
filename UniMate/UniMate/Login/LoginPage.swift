@@ -43,10 +43,11 @@ struct LoginView: View {
 
                 Spacer()
 
-                TextField("Name",
+                TextField("Email",
                           text: $userEmail,
                           prompt: Text("이메일").foregroundColor(Color(UIColor(hexCode: "665E5E")))
                 )
+                .autocapitalization(.none)
                 .padding(15)
                 .background(Color(UIColor(hexCode: "DCD7D7")))
                 .cornerRadius(20)

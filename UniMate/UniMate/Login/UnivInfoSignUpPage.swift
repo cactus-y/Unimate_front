@@ -112,7 +112,7 @@ struct UnivInfoSignUpView: View {
                         .navigationTitle("회원가입")
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
-                            ToolbarItem(placement: .primaryAction) {
+                            ToolbarItem(placement: .navigationBarTrailing) {
                                 Button(action: {
                                     self.showModal = false
                                 }, label: {
@@ -142,4 +142,10 @@ struct UnivInfoSignUpView: View {
 //        }
 //    }
 
+}
+
+struct UnivInfoSignUpView_Previews: PreviewProvider {
+    static var previews: some View {
+        UnivInfoSignUpView(showModal: Binding.constant(true))
+    }
 }

@@ -47,7 +47,7 @@ struct UnivVerificationView: View {
                               text: $userEmail,
                               prompt: Text("이메일을 입력하세요.").foregroundColor(Color(UIColor(hexCode: "665E5E")))
                     )
-                    
+                    .autocapitalization(.none)
                     .multilineTextAlignment(TextAlignment.leading)
                     .frame(alignment: .center)
                     .padding(15)

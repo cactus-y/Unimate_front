@@ -47,7 +47,7 @@ struct UnivVerificationView: View {
                               text: $userEmail,
                               prompt: Text("이메일을 입력하세요.").foregroundColor(Color(UIColor(hexCode: "665E5E")))
                     )
-                    
+                    .autocapitalization(.none)
                     .multilineTextAlignment(TextAlignment.leading)
                     .frame(alignment: .center)
                     .padding(15)
@@ -101,15 +101,14 @@ struct UnivVerificationView: View {
                         .frame(alignment: .leading)
                         .padding(.horizontal)
                     
-                    Text("메일이 도착하지 않는다면 스팸 메일함을 확인해주세요.")
+                    Text("메일이 도착하지 않는다면 스팸 메일함을 \n확인해주세요.")
                         .padding(5)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
                         .padding(.horizontal)
                 }
                 .padding(10)
-                
-                
                 
                 
                 

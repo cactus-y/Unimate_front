@@ -86,7 +86,7 @@ struct UserInfoSignUpView: View {
                     .foregroundColor(.black)
                     .frame(alignment: .leading)
                     .padding(.horizontal)
-                
+
                 SecureField("PasswordVerification",
                             text: $passwordVerification,
                             prompt: Text("비밀번호를 입력하세요.").foregroundColor(Color(UIColor(hexCode: "665E5E")))
@@ -105,7 +105,9 @@ struct UserInfoSignUpView: View {
                 }
                 
                 
+
                 NavigationLink(destination: UnivVerificationView(password:$password,selectedUniversity: $selectedUniversity, studentID: $studentID, userNickname: $userNickname)) {
+
                     Text("다음")
                         .frame(maxWidth: .infinity, minHeight: 50)
                         .background(Color(UIColor(hexCode: "70BBF9")))
@@ -125,6 +127,7 @@ struct UserInfoSignUpView: View {
                 }
                 .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
                 
+
                 Spacer()
             }
             .padding(10)
@@ -132,6 +135,7 @@ struct UserInfoSignUpView: View {
             .navigationTitle("회원가입")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+
                 //                ToolbarItem(placement: .cancellationAction) {
                 //                    Button {
                 //                        print("go back to univ info sign up page")
@@ -168,6 +172,7 @@ struct UserInfoSignUpView: View {
         static var previews: some View {
             UserInfoSignUpView(selectedUniversity:.constant(""), studentID:.constant(""))
         }
+
     }
 
 }

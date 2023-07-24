@@ -12,6 +12,7 @@ struct BoardView: View {
         NavigationView {
             ScrollView {
                 VStack (alignment: .leading){
+
                     NavigationLink(destination: BoardDetailView(title: Binding.constant("BEST 게시판"))) {
                         HStack {
                             Text("BEST 게시판")
@@ -273,6 +274,7 @@ struct BoardView: View {
                     HStack {
                         Text("게시판 목록")
                     }
+
                     
                     Divider()
                         .background(Color.black)

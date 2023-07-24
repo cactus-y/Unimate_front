@@ -648,3 +648,15 @@ public let allowedDomains = [
 "hongik.ac.kr",
 "hscu.ac.kr"
 ];
+
+public let RankUniversity = [
+"고려대학교",
+"KAIST",
+"POSTECH",
+"GIST",
+"한양대",
+"성균관대",
+"숙명여대",
+"전남대",
+"부산대"
+]

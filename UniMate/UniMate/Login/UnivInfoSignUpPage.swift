@@ -12,7 +12,7 @@ struct UnivInfoSignUpView: View {
     
     
     @State private var searchText = ""
-    @State private var selectedUniversity = ""
+    @State var selectedUniversity = ""
     
     
     var isNextButtonDisabled: Bool {
@@ -87,7 +87,7 @@ struct UnivInfoSignUpView: View {
                     Spacer()
                     
                     Button(action: {
-//                        saveTempData(studentID: studentID.value, university: selectedUniversity)
+                        //                        saveTempData(studentID: studentID.value, university: selectedUniversity)
                         self.isActive = true
                     }) {
                         Text("다음")
@@ -102,35 +102,28 @@ struct UnivInfoSignUpView: View {
                     .disabled(isNextButtonDisabled)
                     .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
                     
-                    NavigationLink(destination: UserInfoSignUpView(), isActive: $isActive) { EmptyView() }
-                }
-                .padding(10)
-                .navigationTitle("회원가입")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        Button(action: {
-                            self.showModal = false
-                        }, label: {
-                            Image(systemName: "xmark").foregroundColor(.black)
-                        })
-                    }
+                    NavigationLink(destination: UserInfoSignUpView(selectedUniversity: $selectedUniversity, studentID: Binding<String>(
+                        get: { self.studentID.value },
+                        set: { self.studentID.value = $0 }
+                    )), isActive: $isActive) { EmptyView() }
+                    
+                        .padding(10)
+                        .navigationTitle("회원가입")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .primaryAction) {
+                                Button(action: {
+                                    self.showModal = false
+                                }, label: {
+                                    Image(systemName: "xmark").foregroundColor(.black)
+                                })
+                            }
+                        }
                 }
             }
         }
+        
+        
     }
     
-//    let ref = Database.database().reference()
-//
-//    func saveTempData(studentID: String, university: String) {
-//        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
-//        let key = db.child("temporary").childByAutoId().key
-//        db.child("temporary").child(key!).setValue(["studentID": studentID, "university": university]) { error, _ in
-//            if let error = error {
-//                print("Data could not be saved: \(error).")
-//            } else {
-//                print("Data saved successfully!")
-//            }
-//        }
-//    }
 }

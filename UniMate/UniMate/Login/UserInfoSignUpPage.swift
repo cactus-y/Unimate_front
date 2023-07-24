@@ -17,6 +17,8 @@ struct UserInfoSignUpView: View {
     @State var showPasswordMismatchWarning: Bool = false
     @State var shakeButton: Bool = false
     @State private var passwordWarning: String? = nil
+    @Binding var selectedUniversity: String
+    @Binding var studentID: String
     
     var isNextButtonDisabled: Bool {
         if userNickname.isEmpty || password.isEmpty {
@@ -103,7 +105,7 @@ struct UserInfoSignUpView: View {
                 }
                 
                 
-                NavigationLink(destination: UnivVerificationView(password:$password)) {
+                NavigationLink(destination: UnivVerificationView(password:$password,selectedUniversity: $selectedUniversity, studentID: $studentID, userNickname: $userNickname)) {
                     Text("다음")
                         .foregroundColor(.white)
                 }
@@ -162,8 +164,12 @@ struct UserInfoSignUpView: View {
     }
     
     struct UserInfo_Preview: PreviewProvider {
+        @State static var dummyUniversity = ""
+        @State static var dummyStudentID = ""
+        
         static var previews: some View {
-            UserInfoSignUpView()
+            UserInfoSignUpView(selectedUniversity:.constant(""), studentID:.constant(""))
         }
     }
+
 }

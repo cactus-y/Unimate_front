@@ -90,18 +90,16 @@ struct UnivInfoSignUpView: View {
                     Spacer()
                     
                     Button(action: {
-                        //                        saveTempData(studentID: studentID.value, university: selectedUniversity)
+                        // saveTempData(studentID: studentID.value, university: selectedUniversity)
                         self.isActive = true
                     }) {
                         Text("다음")
+                            .frame(maxWidth: .infinity, minHeight: 50)
+                            .background(Color(UIColor(hexCode: "70BBF9")))
                             .foregroundColor(.white)
-                            .frame(height: 50)
-                            .frame(maxWidth: .infinity)
-                            .background(
-                                Color(UIColor(hexCode: "70BBF9"))
-                            )
                             .cornerRadius(20)
                     }
+
                     .disabled(isNextButtonDisabled)
                     .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
                     

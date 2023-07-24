@@ -109,16 +109,14 @@ struct UserInfoSignUpView: View {
                 NavigationLink(destination: UnivVerificationView(password:$password,selectedUniversity: $selectedUniversity, studentID: $studentID, userNickname: $userNickname)) {
 
                     Text("다음")
+                        .frame(maxWidth: .infinity, minHeight: 50)
+                        .background(Color(UIColor(hexCode: "70BBF9")))
                         .foregroundColor(.white)
+                        .cornerRadius(20)
                 }
-                .frame(height: 50)
-                .frame(maxWidth: .infinity)
-                .background(
-                    Color(UIColor(hexCode: "70BBF9"))
-                )
-                .cornerRadius(20)
                 .disabled(isNextButtonDisabled)
                 .modifier(Shake(animatableData: CGFloat(shakeButton ? 0 : 1))) // Add this
+
                 .onTapGesture {
                     if isNextButtonDisabled {
                         showPasswordMismatchWarning = true

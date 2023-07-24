@@ -92,21 +92,19 @@ struct LoginView: View {
                                         .foregroundColor(.red)
                 }
                 
-                Button {
+                Button(action: {
                     print("do login action")
                     login()
-                } label: {
+                }) {
                     Text("유니메이트 로그인")
+                        .frame(maxWidth: .infinity, minHeight: 50)
+                        .background(Color(UIColor(hexCode: "70BBF9")))
                         .foregroundColor(.white)
+                        .cornerRadius(20)
                 }
-                .frame(height: 50)
-                .frame(maxWidth: .infinity)
-                .background(
-                    Color(UIColor(hexCode: "70BBF9"))
-                )
-                .cornerRadius(20)
                 .disabled(isSignInButtonDisabled)
                 .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
+
 
                 VStack() {
                     Button (action: {

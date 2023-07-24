@@ -57,26 +57,25 @@ struct UnivVerificationView: View {
                     .padding(.horizontal)
                     
                     
-                    Button {
+                    Button(action: {
                         if isValidEmail(userEmail){
-                            
                             register()
                         }
                         else{
                             showAlert = true
                         }
-                    } label: {
+                    }) {
                         Text("인증 메일 발송하기")
+                            .frame(maxWidth: .infinity, minHeight: 50)
+                            .background(Color(UIColor(hexCode: "70BBF9")))
                             .foregroundColor(.white)
+                            .cornerRadius(20)
                     }
-                    .frame(height: 50)
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        Color(UIColor(hexCode: "70BBF9"))
-                    )
-                    .cornerRadius(20)
-                    //                    .disabled(isEmailButtonDisabled)
                     .padding(.horizontal)
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("오류"), message: Text("올바르지 않은 이메일입니다."), dismissButton: .default(Text("확인")))
+                    }
+
                     .alert(isPresented: $showAlert) { // Alert를 표시합니다.
                         Alert(title: Text("오류"), message: Text("올바르지 않은 이메일입니다.\n 교육용 이메일을 입력해주세요."), dismissButton: .default(Text("확인")))
                     }

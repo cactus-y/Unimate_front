@@ -36,6 +36,7 @@ struct MainTabView: View {
                         Image(systemName: "person")
                     }
             }
+            
         }
         .navigationBarBackButtonHidden(true)
     }

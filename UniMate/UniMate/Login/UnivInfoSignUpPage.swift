@@ -1,3 +1,4 @@
+
 import SwiftUI
 import Foundation
 import FirebaseDatabase
@@ -23,6 +24,7 @@ struct UnivInfoSignUpView: View {
         VStack(alignment: .leading, spacing: 15) {
             NavigationView {
                 VStack(alignment: .leading,spacing: 15) {
+
                     Text("학번 선택")
                         .bold()
                         .font(.title)
@@ -47,6 +49,7 @@ struct UnivInfoSignUpView: View {
                         .foregroundColor(.black)
                         .frame(alignment: .leading)
                         .padding(.horizontal)
+
                     VStack{
                         
                         TextField("UniversityName",
@@ -119,6 +122,7 @@ struct UnivInfoSignUpView: View {
                                 })
                             }
                         }
+
                 }
             }
         }
@@ -126,4 +130,18 @@ struct UnivInfoSignUpView: View {
         
     }
     
+//    let ref = Database.database().reference()
+//
+//    func saveTempData(studentID: String, university: String) {
+//        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+//        let key = db.child("temporary").childByAutoId().key
+//        db.child("temporary").child(key!).setValue(["studentID": studentID, "university": university]) { error, _ in
+//            if let error = error {
+//                print("Data could not be saved: \(error).")
+//            } else {
+//                print("Data saved successfully!")
+//            }
+//        }
+//    }
+
 }

@@ -28,7 +28,7 @@ struct LoginView: View {
     @State var showPassword: Bool = false
     @State var loginSuccess: Bool = false
     @State var errorMessage: String?
-    @State private var isPresented = false
+    @State private var isPresented = false 
     var isSignInButtonDisabled: Bool {
         [userEmail, password].contains(where: \.isEmpty)
     }

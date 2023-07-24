@@ -12,172 +12,252 @@ struct BoardView: View {
         NavigationView {
             ScrollView {
                 VStack (alignment: .leading){
-                    HStack {
-                        Text("BEST 게시판")
-                        Spacer()
-                        Button {
-                            print("Go to BEST board")
-                        } label: {
+                    NavigationLink(destination: BoardDetailView(title: Binding.constant("BEST 게시판"))) {
+                        HStack {
+                            Text("BEST 게시판")
+                                .foregroundColor(.black)
+                            Spacer()
                             Image(systemName: "chevron.right")
                         }
+    //                    .onTapGesture {
+    //                        // give on tap gesture to entire hstack?
+    //                        print("Go to BEST board?")
+    //                    }
                     }
-                    .onTapGesture {
-                        // give on tap gesture to entire hstack?
-                        print("Go to BEST board?")
-                    }
+                    
                     
                     Divider()
                         .background(Color.black)
                     
-                    VStack(alignment: .leading) {
+                    NavigationLink(destination: PostDetailView()) {
                         VStack(alignment: .leading) {
-                            HStack {
-                                Image(systemName: "person")
-                                Text("익명")
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Image(systemName: "person")
+                                        .foregroundColor(.black)
+                                    Text("익명")
+                                        .foregroundColor(.black)
+                                        .bold()
+                                    Spacer()
+                                    Text("07/23")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                                }
+                                Text("Title1")
+                                    .foregroundColor(.black)
                                     .bold()
+                                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+                                    .foregroundColor(.black)
+                                    .lineLimit(2)
                             }
-                            Text("Title1")
-                                .bold()
-                            Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-                                .lineLimit(2)
+                            
+                            HStack {
+                                Text("자유게시판")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                                Spacer()
+                                Label("3", systemImage: "hand.thumbsup")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.red)
+                                Label("5", systemImage: "message")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.blue)
+                            }
+                            
                         }
-                        
-                        HStack {
-                            Text("자유게시판")
-                                .font(.system(size: 12))
-                                .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                            Spacer()
-                            Label("3", systemImage: "hand.thumbsup")
-                                .font(.system(size: 12))
-                                .foregroundColor(.red)
-                            Label("5", systemImage: "message")
-                                .font(.system(size: 12))
-                                .foregroundColor(.blue)
-                        }
-                        
+                        .frame(alignment: .leading)
+                        .padding(10)
+//                        .onTapGesture {
+//                            print("Move to PostDetailView")
+//                            NavigationLink(destination: PostDetailView(), label: {
+//                                Text("")
+//                            })
+//                        }
                     }
-                    .frame(alignment: .leading)
-                    .padding(10)
                     
-                    VStack(alignment: .leading) {
+                    NavigationLink(destination: PostDetailView()) {
                         VStack(alignment: .leading) {
-                            HStack {
-                                Image(systemName: "person")
-                                Text("익명")
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Image(systemName: "person")
+                                        .foregroundColor(.black)
+                                    Text("익명")
+                                        .foregroundColor(.black)
+                                        .bold()
+                                    Spacer()
+                                    Text("07/23")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                                }
+                                Text("Title1")
+                                    .foregroundColor(.black)
                                     .bold()
+                                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+                                    .foregroundColor(.black)
+                                    .lineLimit(2)
                             }
-                            Text("Title1")
-                                .bold()
-                            Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-                                .lineLimit(2)
+                            
+                            HStack {
+                                Text("자유게시판")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                                Spacer()
+                                Label("3", systemImage: "hand.thumbsup")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.red)
+                                Label("5", systemImage: "message")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.blue)
+                            }
+                            
                         }
-                        
-                        HStack {
-                            Text("자유게시판")
-                                .font(.system(size: 12))
-                                .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                            Spacer()
-                            Label("3", systemImage: "hand.thumbsup")
-                                .font(.system(size: 12))
-                                .foregroundColor(.red)
-                            Label("5", systemImage: "message")
-                                .font(.system(size: 12))
-                                .foregroundColor(.blue)
-                        }
-                        
+                        .frame(alignment: .leading)
+                        .padding(10)
+//                        .onTapGesture {
+//                            print("Move to PostDetailView")
+//                            NavigationLink(destination: PostDetailView(), label: {
+//                                Text("")
+//                            })
+//                        }
                     }
-                    .frame(alignment: .leading)
-                    .padding(10)
                     
-                    VStack(alignment: .leading) {
+                    NavigationLink(destination: PostDetailView()) {
                         VStack(alignment: .leading) {
-                            HStack {
-                                Image(systemName: "person")
-                                Text("익명")
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Image(systemName: "person")
+                                        .foregroundColor(.black)
+                                    Text("익명")
+                                        .foregroundColor(.black)
+                                        .bold()
+                                    Spacer()
+                                    Text("07/23")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                                }
+                                Text("Title1")
+                                    .foregroundColor(.black)
                                     .bold()
+                                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+                                    .foregroundColor(.black)
+                                    .lineLimit(2)
                             }
-                            Text("Title1")
-                                .bold()
-                            Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-                                .lineLimit(2)
+                            
+                            HStack {
+                                Text("자유게시판")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                                Spacer()
+                                Label("3", systemImage: "hand.thumbsup")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.red)
+                                Label("5", systemImage: "message")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.blue)
+                            }
+                            
                         }
-                        
-                        HStack {
-                            Text("자유게시판")
-                                .font(.system(size: 12))
-                                .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                            Spacer()
-                            Label("3", systemImage: "hand.thumbsup")
-                                .font(.system(size: 12))
-                                .foregroundColor(.red)
-                            Label("5", systemImage: "message")
-                                .font(.system(size: 12))
-                                .foregroundColor(.blue)
-                        }
-                        
+                        .frame(alignment: .leading)
+                        .padding(10)
+//                        .onTapGesture {
+//                            print("Move to PostDetailView")
+//                            NavigationLink(destination: PostDetailView(), label: {
+//                                Text("")
+//                            })
+//                        }
                     }
-                    .frame(alignment: .leading)
-                    .padding(10)
                     
-                    VStack(alignment: .leading) {
+                    NavigationLink(destination: PostDetailView()) {
                         VStack(alignment: .leading) {
-                            HStack {
-                                Image(systemName: "person")
-                                Text("익명")
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Image(systemName: "person")
+                                        .foregroundColor(.black)
+                                    Text("익명")
+                                        .foregroundColor(.black)
+                                        .bold()
+                                    Spacer()
+                                    Text("07/23")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                                }
+                                Text("Title1")
+                                    .foregroundColor(.black)
                                     .bold()
+                                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+                                    .foregroundColor(.black)
+                                    .lineLimit(2)
                             }
-                            Text("Title1")
-                                .bold()
-                            Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-                                .lineLimit(2)
+                            
+                            HStack {
+                                Text("자유게시판")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                                Spacer()
+                                Label("3", systemImage: "hand.thumbsup")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.red)
+                                Label("5", systemImage: "message")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.blue)
+                            }
+                            
                         }
-                        
-                        HStack {
-                            Text("자유게시판")
-                                .font(.system(size: 12))
-                                .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                            Spacer()
-                            Label("3", systemImage: "hand.thumbsup")
-                                .font(.system(size: 12))
-                                .foregroundColor(.red)
-                            Label("5", systemImage: "message")
-                                .font(.system(size: 12))
-                                .foregroundColor(.blue)
-                        }
-                        
+                        .frame(alignment: .leading)
+                        .padding(10)
+//                        .onTapGesture {
+//                            print("Move to PostDetailView")
+//                            NavigationLink(destination: PostDetailView(), label: {
+//                                Text("")
+//                            })
+//                        }
                     }
-                    .frame(alignment: .leading)
-                    .padding(10)
                     
-                    VStack(alignment: .leading) {
+                    NavigationLink(destination: PostDetailView()) {
                         VStack(alignment: .leading) {
-                            HStack {
-                                Image(systemName: "person")
-                                Text("익명")
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Image(systemName: "person")
+                                        .foregroundColor(.black)
+                                    Text("익명")
+                                        .foregroundColor(.black)
+                                        .bold()
+                                    Spacer()
+                                    Text("07/23")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                                }
+                                Text("Title1")
+                                    .foregroundColor(.black)
                                     .bold()
+                                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+                                    .foregroundColor(.black)
+                                    .lineLimit(2)
                             }
-                            Text("Title1")
-                                .bold()
-                            Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-                                .lineLimit(2)
+                            
+                            HStack {
+                                Text("자유게시판")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                                Spacer()
+                                Label("3", systemImage: "hand.thumbsup")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.red)
+                                Label("5", systemImage: "message")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.blue)
+                            }
+                            
                         }
-                        
-                        HStack {
-                            Text("자유게시판")
-                                .font(.system(size: 12))
-                                .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                            Spacer()
-                            Label("3", systemImage: "hand.thumbsup")
-                                .font(.system(size: 12))
-                                .foregroundColor(.red)
-                            Label("5", systemImage: "message")
-                                .font(.system(size: 12))
-                                .foregroundColor(.blue)
-                        }
-                        
+                        .frame(alignment: .leading)
+                        .padding(10)
+//                        .onTapGesture {
+//                            print("Move to PostDetailView")
+//                            NavigationLink(destination: PostDetailView(), label: {
+//                                Text("")
+//                            })
+//                        }
                     }
-                    .frame(alignment: .leading)
-                    .padding(10)
                     
                     
                 }
@@ -193,70 +273,78 @@ struct BoardView: View {
                     HStack {
                         Text("게시판 목록")
                     }
-                
+                    
                     Divider()
                         .background(Color.black)
                     
-                    HStack {
-                        Text("자유 게시판")
-                        Spacer()
-                        Button {
-                            print("Go to community board")
-                        } label: {
+                    NavigationLink(destination: BoardDetailView(title: Binding.constant("자유 게시판"))) {
+                        HStack {
+                            Text("자유 게시판")
+                                .foregroundColor(.black)
+                            Spacer()
                             Image(systemName: "chevron.right")
                         }
+                        .padding(.vertical)
+    //                    .onTapGesture {
+    //                        // give on tap gesture to entire hstack?
+    //                        print("Go to community board?")
+    //                    }
                     }
-                    .padding(.vertical)
-                    .onTapGesture {
-                        // give on tap gesture to entire hstack?
-                        print("Go to community board?")
-                    }
                     
-                    
-                    
-                    HStack {
-                        Text("대학원 게시판")
-                        Spacer()
-                        Button {
-                            print("Go to grad board")
-                        } label: {
+                    NavigationLink(destination: BoardDetailView(title: Binding.constant("대학원 게시판"))) {
+                        HStack {
+                            Text("대학원 게시판")
+                                .foregroundColor(.black)
+                            Spacer()
                             Image(systemName: "chevron.right")
                         }
-                    }
-                    .padding(.vertical)
-                    .onTapGesture {
-                        // give on tap gesture to entire hstack?
-                        print("Go to grad board?")
-                    }
-                    
-                    HStack {
-                        Text("동아리 게시판")
-                        Spacer()
-                        Button {
-                            print("Go to club board")
-                        } label: {
-                            Image(systemName: "chevron.right")
-                        }
-                    }
-                    .padding(.vertical)
-                    .onTapGesture {
-                        // give on tap gesture to entire hstack?
-                        print("Go to club board?")
+                        .padding(.vertical)
+    //                    .onTapGesture {
+    //                        // give on tap gesture to entire hstack?
+    //                        print("Go to community board?")
+    //                    }
                     }
                     
-                    HStack {
-                        Text("홍보 게시판")
-                        Spacer()
-                        Button {
-                            print("Go to ad board")
-                        } label: {
+                    NavigationLink(destination: BoardDetailView(title: Binding.constant("동아리 게시판"))) {
+                        HStack {
+                            Text("동아리 게시판")
+                                .foregroundColor(.black)
+                            Spacer()
                             Image(systemName: "chevron.right")
                         }
+                        .padding(.vertical)
+    //                    .onTapGesture {
+    //                        // give on tap gesture to entire hstack?
+    //                        print("Go to community board?")
+    //                    }
                     }
-                    .padding(.vertical)
-                    .onTapGesture {
-                        // give on tap gesture to entire hstack?
-                        print("Go to ad board?")
+                    
+                    NavigationLink(destination: BoardDetailView(title: Binding.constant("홍보 게시판"))) {
+                        HStack {
+                            Text("홍보 게시판")
+                                .foregroundColor(.black)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        .padding(.vertical)
+    //                    .onTapGesture {
+    //                        // give on tap gesture to entire hstack?
+    //                        print("Go to community board?")
+    //                    }
+                    }
+                    
+                    NavigationLink(destination: BoardDetailView(title: Binding.constant("길냥이 게시판"))) {
+                        HStack {
+                            Text("길냥이 게시판")
+                                .foregroundColor(.black)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        .padding(.vertical)
+    //                    .onTapGesture {
+    //                        // give on tap gesture to entire hstack?
+    //                        print("Go to community board?")
+    //                    }
                     }
                     
                     

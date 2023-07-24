@@ -8,6 +8,8 @@
 import SwiftUI
 import Foundation
 import FirebaseAuth
+import FirebaseDatabase
+import UIKit
 
 struct UnivVerificationView: View {
     @Environment(\.dismiss) private var dismiss
@@ -15,6 +17,9 @@ struct UnivVerificationView: View {
     @State var userEmail: String = ""
     @State var showAlert: Bool = false
     @Binding var password: String
+    @Binding var selectedUniversity: String
+    @Binding var studentID: String
+    @Binding var userNickname: String
     @State private var message = ""
     
     
@@ -36,7 +41,7 @@ struct UnivVerificationView: View {
                         .frame(alignment: .leading)
                         .padding(EdgeInsets(top: 30, leading: 0, bottom: 0, trailing: 0))
                         .padding(.horizontal)
-
+                    
                     
                     TextField("UserEmail",
                               text: $userEmail,
@@ -70,18 +75,18 @@ struct UnivVerificationView: View {
                         Color(UIColor(hexCode: "70BBF9"))
                     )
                     .cornerRadius(20)
-//                    .disabled(isEmailButtonDisabled)
+                    //                    .disabled(isEmailButtonDisabled)
                     .padding(.horizontal)
                     .alert(isPresented: $showAlert) { // Alert를 표시합니다.
-                                Alert(title: Text("오류"), message: Text("올바르지 않은 이메일입니다."), dismissButton: .default(Text("확인")))
-                            }
+                        Alert(title: Text("오류"), message: Text("올바르지 않은 이메일입니다.\n 교육용 이메일을 입력해주세요."), dismissButton: .default(Text("확인")))
+                    }
                     Text(message)
-                                .foregroundColor(.red)
-                                .padding()
+                        .foregroundColor(.red)
+                        .padding()
                 }
                 .padding(10)
                 
-    
+                
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text("유의사항")
@@ -120,7 +125,7 @@ struct UnivVerificationView: View {
                     } label: {
                         HStack {
                             Image(systemName: "chevron.backward")
-    //                        Text("Back")
+                            //                        Text("Back")
                         }
                     }
                 }
@@ -130,14 +135,14 @@ struct UnivVerificationView: View {
         
     }
     func isValidEmail(_ email: String) -> Bool {
-            let emailRegEx = "[A-Z0-9a-z._%+-]+@([A-Za-z0-9.-]+\\.[A-Za-z]{2,64})"
-            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-            if emailTest.evaluate(with: email) {
-                let domain = email.components(separatedBy: "@")[1]
-                return allowedDomains.contains(domain) // allowedDomains를 사용합니다.
-            }
-            return false
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@([A-Za-z0-9.-]+\\.[A-Za-z]{2,64})"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        if emailTest.evaluate(with: email) {
+            let domain = email.components(separatedBy: "@")[1]
+            return allowedDomains.contains(domain) // allowedDomains를 사용합니다.
         }
+        return false
+    }
     func register() {
         Auth.auth().createUser(withEmail: userEmail, password: password) { authResult, error in
             if let error = error as NSError? {
@@ -164,24 +169,42 @@ struct UnivVerificationView: View {
                 }
                 return
             }
+
             if let authResult = authResult {
                 authResult.user.sendEmailVerification { error in
                     if let error = error {
-                        self.message = "이메일 확인 메시지를 보내는데 오류가 발생했습니다: \(error)"
+                        self.message = "오류가 발생했습니다: \(error)"
                         return
                     }
                     // 이메일 확인 메시지가 성공적으로 전송되었습니다.
-                    self.message = "이메일 확인 메시지가 전송되었습니다. 확인 후 로그인하세요."
+                    self.message = "이메일 확인 메시지가 전송되었습니다."
+                    
+                    let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+
+                    // Data to be stored
+                    let userData: [String: Any] = [
+                        "university": self.selectedUniversity,
+                        "studentId": self.studentID,
+                        "nickname": self.userNickname
+                    ]
+
+                    db.child("users").child(authResult.user.uid).setValue(userData) { error, _ in
+                        if let error = error {
+                            print("Data could not be saved: \(error).")
+                        } else {
+                            print("Data saved successfully!")
+                        }
+                    }
                 }
             }
         }
     }
 
-    }
-
-
-struct UnivVerification_Preview: PreviewProvider {
-    static var previews: some View {
-        UnivVerificationView(password: .constant(""))
+    
+    
+    struct UnivVerification_Preview: PreviewProvider {
+        static var previews: some View {
+            UnivVerificationView(password: .constant(""),selectedUniversity: .constant(""),studentID: .constant(""),userNickname: .constant(""))
+        }
     }
 }

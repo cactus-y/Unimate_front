@@ -13,7 +13,7 @@ struct UnivInfoSignUpView: View {
     
     
     @State private var searchText = ""
-    @State private var selectedUniversity = ""
+    @State var selectedUniversity = ""
     
     
     var isNextButtonDisabled: Bool {
@@ -90,7 +90,7 @@ struct UnivInfoSignUpView: View {
                     Spacer()
                     
                     Button(action: {
-//                        saveTempData(studentID: studentID.value, university: selectedUniversity)
+                        //                        saveTempData(studentID: studentID.value, university: selectedUniversity)
                         self.isActive = true
                     }) {
                         Text("다음")
@@ -105,23 +105,29 @@ struct UnivInfoSignUpView: View {
                     .disabled(isNextButtonDisabled)
                     .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
                     
-                    NavigationLink(destination: UserInfoSignUpView(), isActive: $isActive) { EmptyView() }
+                    NavigationLink(destination: UserInfoSignUpView(selectedUniversity: $selectedUniversity, studentID: Binding<String>(
+                        get: { self.studentID.value },
+                        set: { self.studentID.value = $0 }
+                    )), isActive: $isActive) { EmptyView() }
+                    
+                        .padding(10)
+                        .navigationTitle("회원가입")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .primaryAction) {
+                                Button(action: {
+                                    self.showModal = false
+                                }, label: {
+                                    Image(systemName: "xmark").foregroundColor(.black)
+                                })
+                            }
+                        }
 
-                }
-                .padding(10)
-                .navigationTitle("회원가입")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        Button(action: {
-                            self.showModal = false
-                        }, label: {
-                            Image(systemName: "xmark").foregroundColor(.black)
-                        })
-                    }
                 }
             }
         }
+        
+        
     }
     
 //    let ref = Database.database().reference()

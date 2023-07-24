@@ -154,7 +154,7 @@ struct LoginView: View {
                 case AuthErrorCode.accountExistsWithDifferentCredential.rawValue:
                     errorMessage = "이 이메일은 이미 다른 인증 수단으로 사용 중입니다."
                 default:
-                    errorMessage = "알 수 없는 오류가 발생했습니다. 오류: \(error.localizedDescription)"
+                    errorMessage = "(error.localizedDescription)"
                 }
             } else if authResult?.user != nil {
                 loginSuccess = true

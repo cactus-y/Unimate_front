@@ -7,9 +7,12 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 @main
 struct UniMateApp: App {
+    @StateObject private var appStateManager = AppStateManager()
+    
     init(){
         FirebaseApp.configure()
     }
@@ -17,7 +20,14 @@ struct UniMateApp: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView()
-            LoginView()
+            if appStateManager.isLoggedIn || Auth.auth().currentUser != nil {
+                MainTabView()
+                    .environmentObject(appStateManager)
+            } else {
+                LoginView()
+                    .environmentObject(appStateManager)
+            }
+            
         }
     }
 }

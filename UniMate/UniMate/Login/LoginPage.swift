@@ -47,6 +47,7 @@ struct LoginView: View {
                           text: $userEmail,
                           prompt: Text("이메일").foregroundColor(Color(UIColor(hexCode: "665E5E")))
                 )
+                .keyboardType(.emailAddress)
                 .autocapitalization(.none)
                 .padding(15)
                 .background(Color(UIColor(hexCode: "DCD7D7")))

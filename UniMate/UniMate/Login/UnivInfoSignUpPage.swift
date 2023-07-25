@@ -9,9 +9,9 @@ struct UnivInfoSignUpView: View {
     @Binding var showModal: Bool
     @State var isActive = false
     
-    @ObservedObject var studentID = NumbersOnly()
+//    @ObservedObject var studentID = NumbersOnly()
     
-    
+    @State var studentID = "23"
     @State private var searchText = ""
     @State var selectedUniversity = ""
     
@@ -32,7 +32,7 @@ struct UnivInfoSignUpView: View {
                         .frame(alignment: .leading)
                         .padding(.horizontal)
                     
-                    Picker("연도 선택 (학번)", selection: $studentID.value) {
+                    Picker("연도 선택 (학번)", selection: $studentID) {
                         ForEach((02...23).reversed(), id: \.self) { year in
                             Text("\(year)").tag("\(year)")
                         }
@@ -104,8 +104,8 @@ struct UnivInfoSignUpView: View {
                     .padding(EdgeInsets(top: 10, leading: 15, bottom: 0, trailing: 15))
                     
                     NavigationLink(destination: UserInfoSignUpView(selectedUniversity: $selectedUniversity, studentID: Binding<String>(
-                        get: { self.studentID.value },
-                        set: { self.studentID.value = $0 }
+                        get: { self.studentID },
+                        set: { self.studentID = $0 }
                     )), isActive: $isActive) { EmptyView() }
                     
                         .padding(10)

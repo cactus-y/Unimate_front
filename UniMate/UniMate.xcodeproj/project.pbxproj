@@ -50,6 +50,8 @@
 		E67F951F2A6A9A9500FF3EF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */; };
 		E67F95212A6A9A9600FF3EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E67F95202A6A9A9600FF3EF8 /* Assets.xcassets */; };
 		E67F95242A6A9A9600FF3EF8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E67F95232A6A9A9600FF3EF8 /* Preview Assets.xcassets */; };
+		E6823D392A6F8B150028AFE4 /* MessageDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6823D382A6F8B140028AFE4 /* MessageDetailPage.swift */; };
+		E6823D3B2A6F8D570028AFE4 /* MessageCreatePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6823D3A2A6F8D570028AFE4 /* MessageCreatePage.swift */; };
 		E6B04C182A6A9C9D00195B6A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E6B04C172A6A9C9D00195B6A /* .gitignore */; };
 		E6B04C1C2A6AA96B00195B6A /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B04C1B2A6AA96B00195B6A /* LoginPage.swift */; };
 		E6F53C422A6C0B150049CDE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6F53C412A6C0B150049CDE0 /* GoogleService-Info.plist */; };
@@ -75,6 +77,8 @@
 		E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E67F95202A6A9A9600FF3EF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E67F95232A6A9A9600FF3EF8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E6823D382A6F8B140028AFE4 /* MessageDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailPage.swift; sourceTree = "<group>"; };
+		E6823D3A2A6F8D570028AFE4 /* MessageCreatePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCreatePage.swift; sourceTree = "<group>"; };
 		E6B04C172A6A9C9D00195B6A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E6B04C1B2A6AA96B00195B6A /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		E6F53C412A6C0B150049CDE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 				E6F7E3A92A6E5D3A00CCB8CA /* PostDetailPage.swift */,
 				E6F7E3AC2A6E96B100CCB8CA /* BoardDetailPage.swift */,
 				E60557852A6EB4FB001C2240 /* CreatePostPage.swift */,
+				E6823D382A6F8B140028AFE4 /* MessageDetailPage.swift */,
+				E6823D3A2A6F8D570028AFE4 /* MessageCreatePage.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -292,7 +298,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6823D3B2A6F8D570028AFE4 /* MessageCreatePage.swift in Sources */,
 				675AD6AC2A6C132A00EB559C /* UnivInfoSignUpPage.swift in Sources */,
+				E6823D392A6F8B150028AFE4 /* MessageDetailPage.swift in Sources */,
 				675AD6B02A6C137600EB559C /* UserInfoSignUpPage.swift in Sources */,
 				E6F7E3AA2A6E5D3A00CCB8CA /* PostDetailPage.swift in Sources */,
 				E67F951F2A6A9A9500FF3EF8 /* ContentView.swift in Sources */,

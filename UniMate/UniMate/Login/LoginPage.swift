@@ -23,6 +23,8 @@ extension UIColor {
 }
 
 struct LoginView: View {
+    @EnvironmentObject var appStateManager: AppStateManager
+    
     @State var userEmail: String = ""
     @State var password: String = ""
     @State var showPassword: Bool = false
@@ -158,6 +160,7 @@ struct LoginView: View {
                 }
             } else if authResult?.user != nil {
                 loginSuccess = true
+                appStateManager.isLoggedIn = true
                 errorMessage =  nil
             } else {
                 errorMessage = "로그인에 실패했습니다. 잠시 후 다시 시도해주세요."

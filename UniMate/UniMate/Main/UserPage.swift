@@ -1,8 +1,12 @@
 import SwiftUI
 import Firebase
+import FirebaseDatabase
+import FirebaseDatabaseSwift
 import UIKit
 
 struct UserView: View {
+    @EnvironmentObject var appStateManager: AppStateManager
+    
     @State private var userID: String = ""
     @State private var email: String = ""
     @State private var nickname: String = ""
@@ -12,6 +16,7 @@ struct UserView: View {
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     @State private var image: Image?
+    @State var isLogoutSuccess: Bool = false
 
     var body: some View {
         NavigationView {
@@ -32,6 +37,9 @@ struct UserView: View {
                     UserDetailView(title: "닉네임", detail: $nickname)
                     UserDetailView(title: "학번", detail: $studentId)
                     UserDetailView(title: "대학교", detail: $university)
+                    
+                    
+                    
                 }
                 .padding()
                 .onAppear {
@@ -42,6 +50,26 @@ struct UserView: View {
                 }
                 .navigationTitle("내 정보")
                 .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            logout()
+                        } label: {
+                            Text("로그아웃")
+                            
+                        }
+                        .onChange(of: appStateManager.isLoggedIn) { newValue in
+                            if !newValue {
+                                NavigationLink(destination:
+                                                LoginView().environmentObject(appStateManager),
+                                               isActive: .constant(true),
+                                               label: {}
+                                )
+                            }
+                            
+                        }
+                    }
+                }
             }
         }
     }
@@ -70,6 +98,14 @@ struct UserView: View {
             db.child("university").observeSingleEvent(of: .value) { snapshot in
                 self.university = snapshot.value as? String ?? ""
             }
+        }
+    }
+    
+    func logout() {
+//        Auth.auth().currentUser = nil
+        try? Auth.auth().signOut()
+        if Auth.auth().currentUser == nil {
+            appStateManager.isLoggedIn = false
         }
     }
 }

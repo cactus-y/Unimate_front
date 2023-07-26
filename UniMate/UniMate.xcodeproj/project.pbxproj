@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		670F34B32A70E4C000F10843 /* FreeBoardDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F34B22A70E4C000F10843 /* FreeBoardDetailPage.swift */; };
+		670F34B82A70E61500F10843 /* FreeBoardPostDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F34B72A70E61500F10843 /* FreeBoardPostDetailPage.swift */; };
+		670F34BA2A70F21F00F10843 /* FreeBoardCreatePostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F34B92A70F21F00F10843 /* FreeBoardCreatePostPage.swift */; };
 		6710F2A62A6BAFBF00AD9FB7 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6710F2A52A6BAFBF00AD9FB7 /* FirebaseAnalytics */; };
 		6710F2A82A6BAFBF00AD9FB7 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 6710F2A72A6BAFBF00AD9FB7 /* FirebaseAnalyticsOnDeviceConversion */; };
 		6710F2AA2A6BAFBF00AD9FB7 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6710F2A92A6BAFBF00AD9FB7 /* FirebaseAnalyticsSwift */; };
@@ -61,6 +64,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		670F34B22A70E4C000F10843 /* FreeBoardDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeBoardDetailPage.swift; sourceTree = "<group>"; };
+		670F34B72A70E61500F10843 /* FreeBoardPostDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeBoardPostDetailPage.swift; sourceTree = "<group>"; };
+		670F34B92A70F21F00F10843 /* FreeBoardCreatePostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeBoardCreatePostPage.swift; sourceTree = "<group>"; };
 		675AD69F2A6C126D00EB559C /* BoardPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPage.swift; sourceTree = "<group>"; };
 		675AD6A12A6C128C00EB559C /* LeaderBoardPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardPage.swift; sourceTree = "<group>"; };
 		675AD6A32A6C129F00EB559C /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -130,17 +136,20 @@
 		675AD69E2A6C124E00EB559C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				675AD6A52A6C12B500EB559C /* MessagePage.swift */,
+				E6823D382A6F8B140028AFE4 /* MessageDetailPage.swift */,
+				E6823D3A2A6F8D570028AFE4 /* MessageCreatePage.swift */,
 				675AD69F2A6C126D00EB559C /* BoardPage.swift */,
 				675AD6A12A6C128C00EB559C /* LeaderBoardPage.swift */,
 				675AD6A32A6C129F00EB559C /* MainTabView.swift */,
-				675AD6A52A6C12B500EB559C /* MessagePage.swift */,
 				675AD6A72A6C12D300EB559C /* NotificationPage.swift */,
 				675AD6A92A6C12E900EB559C /* UserPage.swift */,
 				E6F7E3A92A6E5D3A00CCB8CA /* PostDetailPage.swift */,
 				E6F7E3AC2A6E96B100CCB8CA /* BoardDetailPage.swift */,
 				E60557852A6EB4FB001C2240 /* CreatePostPage.swift */,
-				E6823D382A6F8B140028AFE4 /* MessageDetailPage.swift */,
-				E6823D3A2A6F8D570028AFE4 /* MessageCreatePage.swift */,
+				670F34B22A70E4C000F10843 /* FreeBoardDetailPage.swift */,
+				670F34B72A70E61500F10843 /* FreeBoardPostDetailPage.swift */,
+				670F34B92A70F21F00F10843 /* FreeBoardCreatePostPage.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -321,6 +330,7 @@
 				675AD6B22A6C13AC00EB559C /* NumbersOnly.swift in Sources */,
 				E67F951D2A6A9A9500FF3EF8 /* UniMateApp.swift in Sources */,
 				E6823D3D2A6FB6430028AFE4 /* AppStateManager.swift in Sources */,
+				670F34B32A70E4C000F10843 /* FreeBoardDetailPage.swift in Sources */,
 				675AD6AE2A6C135000EB559C /* UnivVerificationPage.swift in Sources */,
 				E6F7E3AD2A6E96B100CCB8CA /* BoardDetailPage.swift in Sources */,
 				675AD6A62A6C12B500EB559C /* MessagePage.swift in Sources */,
@@ -330,6 +340,8 @@
 				675AD6A22A6C128C00EB559C /* LeaderBoardPage.swift in Sources */,
 				675AD6B42A6C253A00EB559C /* UniversitiesData.swift in Sources */,
 				675AD6A42A6C129F00EB559C /* MainTabView.swift in Sources */,
+				670F34B82A70E61500F10843 /* FreeBoardPostDetailPage.swift in Sources */,
+				670F34BA2A70F21F00F10843 /* FreeBoardCreatePostPage.swift in Sources */,
 				675AD6AA2A6C12E900EB559C /* UserPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

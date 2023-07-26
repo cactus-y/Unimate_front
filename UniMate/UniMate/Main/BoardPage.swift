@@ -279,7 +279,7 @@ struct BoardView: View {
                     Divider()
                         .background(Color.black)
                     
-                    NavigationLink(destination: BoardDetailView(title: Binding.constant("자유 게시판"))) {
+                    NavigationLink(destination: FreeBoardDetailView(title: Binding.constant("자유 게시판"))) {
                         HStack {
                             Text("자유 게시판")
                                 .foregroundColor(.black)

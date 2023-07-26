@@ -7,6 +7,8 @@ struct Comment: Identifiable {
     let author: String
     let text: String
     let timestamp: TimeInterval
+    let postID: String
+    let university: String
 }
 
 
@@ -19,6 +21,7 @@ struct FreeBoardPostDetailView: View {
     @State var comments: [Comment] = []
     @State private var university: String = ""
     @State private var userID: String = ""
+
     
     var post: FreeBoardPost
     
@@ -28,8 +31,7 @@ struct FreeBoardPostDetailView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         // title and author
-                        Text(post.title)
-                            .bold()
+                        
 
                         HStack {
                             Image(systemName: "person")
@@ -42,6 +44,9 @@ struct FreeBoardPostDetailView: View {
                             }
                             .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
                         }
+                        
+                        Text(post.title)
+                            .bold()
                         
                         Divider()
                         
@@ -74,7 +79,7 @@ struct FreeBoardPostDetailView: View {
                             VStack(alignment: .leading) {
                                 HStack {
                                     Image(systemName: "person")
-                                    Text(comment.author)
+                                    Text(comment.university)
                                         .bold()
                                     Spacer()
                                     Text(formatDate(timestamp: comment.timestamp))
@@ -103,8 +108,20 @@ struct FreeBoardPostDetailView: View {
                     Button {
                         print("Write a comment")
 
-                        let newComment = Comment(author: university, text: comment, timestamp: Date().timeIntervalSince1970)
+                        let newComment = Comment(author: self.userID, text: comment, timestamp: Date().timeIntervalSince1970, postID: post.postID, university: university)
                         comments.append(newComment)
+
+                        // Add the comment to the database
+                        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("comments").childByAutoId()
+
+                        db.setValue([
+                            "author": newComment.author,
+                            "text": newComment.text,
+                            "timestamp": newComment.timestamp,
+                            "postID": newComment.postID,
+                            "university": newComment.university
+                        ])
+
                         comment = ""
 
                     } label: {
@@ -116,6 +133,7 @@ struct FreeBoardPostDetailView: View {
                     }
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
                     .disabled(comment.isEmpty)
+
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
             }
@@ -145,7 +163,11 @@ struct FreeBoardPostDetailView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        .onAppear(perform: loadUserData)
+        .onAppear(perform:{
+            loadUserData()
+            loadComments()
+        }
+        )
     }
     func loadUserData() {
         if let user = Auth.auth().currentUser {
@@ -156,6 +178,29 @@ struct FreeBoardPostDetailView: View {
             db.child("university").observeSingleEvent(of: .value) { snapshot in
                 self.university = snapshot.value as? String ?? ""
             }
+        }
+    }
+    func loadComments() {
+        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("comments")
+        
+        db.observe(.value) { snapshot in
+            var loadedComments = [Comment]()
+            
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                   let commentData = snapshot.value as? [String: Any],
+                   let author = commentData["author"] as? String,
+                   let text = commentData["text"] as? String,
+                   let timestamp = commentData["timestamp"] as? TimeInterval,
+                   let postID = commentData["postID"] as? String,
+                   let university = commentData["university"] as? String,
+                   postID == self.post.postID
+                {
+                    let comment = Comment(author: author, text: text, timestamp: timestamp, postID: postID, university: university)
+                    loadedComments.append(comment)
+                }
+            }
+            self.comments = loadedComments.sorted(by: { $0.timestamp < $1.timestamp })
         }
     }
     func formatDate(timestamp: TimeInterval) -> String {

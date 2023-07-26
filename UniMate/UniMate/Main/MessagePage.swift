@@ -11,7 +11,7 @@ struct MessageView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                NavigationLink(destination: MessageDetailView(sender: Binding.constant("나"), messageContent: Binding.constant("alkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfk"))) {
+                NavigationLink(destination: MessageDetailView(sender: Binding.constant("나"), messageContent: Binding.constant("나 지금 배고파"))) {
                     VStack(alignment: .leading) {
                         Text("보낸 쪽지")
                             .foregroundColor(.black)
@@ -22,7 +22,7 @@ struct MessageView: View {
                                 .foregroundColor(.black)
                             Spacer()
                         }
-                        Text("alkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfkalkdsjflksajdhlfk")
+                        Text("나 지금 되게 배고파")
                             .multilineTextAlignment(.leading)
                             .lineLimit(2)
                             .foregroundColor(.black)
@@ -32,7 +32,7 @@ struct MessageView: View {
                     .background(.white)
                 }
                 
-                NavigationLink(destination: MessageDetailView(sender: Binding.constant("고려대학교"), messageContent: Binding.constant("alkdsjflksajdhlfk"))) {
+                NavigationLink(destination: MessageDetailView(sender: Binding.constant("고려대학교"), messageContent: Binding.constant("저랑 태평소 먹으러 가실래요"))) {
                     VStack(alignment: .leading) {
                         Text("받은 쪽지")
                             .foregroundColor(.black)
@@ -43,7 +43,7 @@ struct MessageView: View {
                                 .foregroundColor(.black)
                             Spacer()
                         }
-                        Text("alkdsjflksajdhlfk")
+                        Text("너 지금 뭐하는거야.")
                             .multilineTextAlignment(.leading)
                             .lineLimit(2)
                             .foregroundColor(.black)

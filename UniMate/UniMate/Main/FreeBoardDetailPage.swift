@@ -97,7 +97,7 @@ struct FreeBoardDetailView: View {
     private func loadPosts() {
         let ref = Database.database().reference().child("freeBoard")
         
-        ref.observeSingleEvent(of: .value) { snapshot in
+        ref.observeSingleEvent(of: .value) { (snapshot,string) in
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 if let dict = child.value as? [String: Any],
                    let author = dict["author"] as? String,
@@ -108,7 +108,7 @@ struct FreeBoardDetailView: View {
                    let likesCount = dict["likesCount"] as? Int,
                    let university = dict["university"] as? String,
                    let commentCount = dict["commentCount"] as? Int {
-                    let post = FreeBoardPost(id: UUID(), author: author, title: title, text: text, timestamp: timestamp, postID: postID, likesCount: likesCount, university: university, commentCount: commentCount)
+                    let post = FreeBoardPost( author: author, title: title, text: text, timestamp: timestamp, postID: postID, likesCount: likesCount, university: university, commentCount: commentCount)
                     self.posts.append(post)
                 }
             }

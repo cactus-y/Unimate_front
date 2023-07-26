@@ -4,17 +4,19 @@ import FirebaseDatabase
 
 struct FreeBoardDetailView: View {
     @Environment(\.dismiss) private var dismiss
+//    var post: FreeBoardPost
     
     @Binding var title: String
     @State private var posts: [FreeBoardPost] = []
     
     @State var isPresented: Bool = false
     
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 ForEach(posts) { post in
-                    NavigationLink(destination: FreeBoardPostDetailView()) {
+                    NavigationLink(destination: FreeBoardPostDetailView(likeCount:0,post: post)) {
                         VStack(alignment: .leading) {
                             VStack(alignment: .leading) {
                                 Text(post.title)
@@ -108,7 +110,7 @@ struct FreeBoardDetailView: View {
                    let likesCount = dict["likesCount"] as? Int,
                    let university = dict["university"] as? String,
                    let commentCount = dict["commentCount"] as? Int {
-                    let post = FreeBoardPost( author: author, title: title, text: text, timestamp: timestamp, postID: postID, likesCount: likesCount, university: university, commentCount: commentCount)
+                    let post = FreeBoardPost(author: author, title: title, text: text, timestamp: timestamp, postID: postID, likesCount: likesCount, university: university, commentCount: commentCount)
                     self.posts.append(post)
                 }
             }

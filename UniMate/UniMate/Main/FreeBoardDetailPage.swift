@@ -100,6 +100,7 @@ struct FreeBoardDetailView: View {
         let ref = Database.database().reference().child("freeBoard")
         
         ref.observeSingleEvent(of: .value) { (snapshot,string) in
+            self.posts = []
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 if let dict = child.value as? [String: Any],
                    let author = dict["author"] as? String,

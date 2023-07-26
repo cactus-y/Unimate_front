@@ -1,4 +1,5 @@
 import SwiftUI
+import FirebaseDatabase
 
 struct University: Identifiable {
     var id = UUID()
@@ -16,6 +17,7 @@ struct LeaderBoardView: View {
         University(name: "성균관대", likesCount: 0),
         University(name: "숙명여대", likesCount: 0)
     ]
+    let ref = Database.database().reference()
 
     var body: some View {
         NavigationView {
@@ -23,25 +25,37 @@ struct LeaderBoardView: View {
                 VStack(alignment: .leading) {
                     ForEach(universities.sorted(by: { $0.likesCount > $1.likesCount }).indices, id: \.self) { index in
                         let university = universities.sorted(by: { $0.likesCount > $1.likesCount })[index]
-                        UniversityView(rank: index + 1, university: self.$universities[self.getIndex(of: university)])
+                        UniversityView(rank: index + 1, university: self.$universities[self.getIndex(of: university.name)!])
                     }
                 }
                 .navigationTitle("학교 순위")
             }
         }
+        .onAppear(perform: getLikesFromFirebase)
     }
     
-    private func getIndex(of university: University) -> Int {
-        guard let index = universities.firstIndex(where: { $0.id == university.id }) else {
-            fatalError("Index is out of range.")
-        }
-        return index
+    private func getIndex(of name: String) -> Int? {
+        universities.firstIndex(where: { $0.name == name })
+    }
+    
+    private func getLikesFromFirebase() {
+        self.ref.child("universities").observe(.value, with: { (snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                if let dictionary = child.value as? [String: AnyObject] {
+                    let name = child.key
+                    if let likesCount = dictionary["likesCount"] as? Int, let universityIndex = self.getIndex(of: name) {
+                        universities[universityIndex].likesCount = likesCount
+                    }
+                }
+            }
+        })
     }
 }
 
 struct UniversityView: View {
     var rank: Int
     @Binding var university: University
+    let ref = Database.database().reference()
 
     var body: some View {
         HStack {
@@ -62,6 +76,7 @@ struct UniversityView: View {
             VStack {
                 Button(action: {
                     university.likesCount += 1
+                    updateLikesInFirebase()
                 }) {
                     Image(systemName: "heart")
                         .resizable()
@@ -78,6 +93,10 @@ struct UniversityView: View {
         .cornerRadius(10)
         .padding(.horizontal)
         .frame(width: 360,height: 110)
+    }
+    
+    private func updateLikesInFirebase() {
+        self.ref.child("universities").child(university.name).setValue(["likesCount": university.likesCount])
     }
 }
 

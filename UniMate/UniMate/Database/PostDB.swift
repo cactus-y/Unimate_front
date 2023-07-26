@@ -11,6 +11,7 @@ import FirebaseDatabase
 import FirebaseDatabaseSwift
 
 class PostDB: ObservableObject {
+
     @Published var posts: [Post] = []
     @Published var changeCount: Int = 0
     

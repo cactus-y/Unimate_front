@@ -37,11 +37,6 @@
 		6710F2D62A6BAFBF00AD9FB7 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6710F2D52A6BAFBF00AD9FB7 /* FirebaseRemoteConfigSwift */; };
 		6710F2D82A6BAFBF00AD9FB7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6710F2D72A6BAFBF00AD9FB7 /* FirebaseStorage */; };
 		6710F2DA2A6BAFBF00AD9FB7 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 6710F2D92A6BAFBF00AD9FB7 /* FirebaseStorageCombine-Community */; };
-		6711BDA72A6FC34C00C4074F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6711BDA62A6FC34C00C4074F /* GoogleService-Info.plist */; };
-		6711BDAA2A6FE68D00C4074F /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6711BDA92A6FE68D00C4074F /* Board.swift */; };
-		6711BDAC2A6FE69D00C4074F /* BoardDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6711BDAB2A6FE69D00C4074F /* BoardDB.swift */; };
-		6711BDAE2A6FE6C200C4074F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6711BDAD2A6FE6C200C4074F /* Post.swift */; };
-		6711BDB02A6FE6D800C4074F /* PostDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6711BDAF2A6FE6D800C4074F /* PostDB.swift */; };
 		675AD6A02A6C126D00EB559C /* BoardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD69F2A6C126D00EB559C /* BoardPage.swift */; };
 		675AD6A22A6C128C00EB559C /* LeaderBoardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD6A12A6C128C00EB559C /* LeaderBoardPage.swift */; };
 		675AD6A42A6C129F00EB559C /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD6A32A6C129F00EB559C /* MainTabView.swift */; };
@@ -54,6 +49,7 @@
 		675AD6B22A6C13AC00EB559C /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD6B12A6C13AC00EB559C /* NumbersOnly.swift */; };
 		675AD6B42A6C253A00EB559C /* UniversitiesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD6B32A6C253A00EB559C /* UniversitiesData.swift */; };
 		E60557862A6EB4FB001C2240 /* CreatePostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60557852A6EB4FB001C2240 /* CreatePostPage.swift */; };
+		E65386042A70EC150057B493 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E65386032A70EC150057B493 /* GoogleService-Info.plist */; };
 		E67F951D2A6A9A9500FF3EF8 /* UniMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F951C2A6A9A9500FF3EF8 /* UniMateApp.swift */; };
 		E67F951F2A6A9A9500FF3EF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */; };
 		E67F95212A6A9A9600FF3EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E67F95202A6A9A9600FF3EF8 /* Assets.xcassets */; };
@@ -71,11 +67,6 @@
 		670F34B22A70E4C000F10843 /* FreeBoardDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeBoardDetailPage.swift; sourceTree = "<group>"; };
 		670F34B72A70E61500F10843 /* FreeBoardPostDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeBoardPostDetailPage.swift; sourceTree = "<group>"; };
 		670F34B92A70F21F00F10843 /* FreeBoardCreatePostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeBoardCreatePostPage.swift; sourceTree = "<group>"; };
-		6711BDA62A6FC34C00C4074F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../걍 장난/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		6711BDA92A6FE68D00C4074F /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
-		6711BDAB2A6FE69D00C4074F /* BoardDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDB.swift; sourceTree = "<group>"; };
-		6711BDAD2A6FE6C200C4074F /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		6711BDAF2A6FE6D800C4074F /* PostDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDB.swift; sourceTree = "<group>"; };
 		675AD69F2A6C126D00EB559C /* BoardPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPage.swift; sourceTree = "<group>"; };
 		675AD6A12A6C128C00EB559C /* LeaderBoardPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardPage.swift; sourceTree = "<group>"; };
 		675AD6A32A6C129F00EB559C /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -88,6 +79,8 @@
 		675AD6B12A6C13AC00EB559C /* NumbersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOnly.swift; sourceTree = "<group>"; };
 		675AD6B32A6C253A00EB559C /* UniversitiesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesData.swift; sourceTree = "<group>"; };
 		E60557852A6EB4FB001C2240 /* CreatePostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostPage.swift; sourceTree = "<group>"; };
+		E65386032A70EC150057B493 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E673F6442A711062007E309E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E67F95192A6A9A9500FF3EF8 /* UniMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E67F951C2A6A9A9500FF3EF8 /* UniMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniMateApp.swift; sourceTree = "<group>"; };
 		E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -140,17 +133,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6711BDA82A6FE66900C4074F /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				6711BDA92A6FE68D00C4074F /* Board.swift */,
-				6711BDAB2A6FE69D00C4074F /* BoardDB.swift */,
-				6711BDAD2A6FE6C200C4074F /* Post.swift */,
-				6711BDAF2A6FE6D800C4074F /* PostDB.swift */,
-			);
-			path = Database;
-			sourceTree = "<group>";
-		};
 		675AD69E2A6C124E00EB559C /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,12 +154,20 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		E65386002A70EB070057B493 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		E67F95102A6A9A9500FF3EF8 = {
 			isa = PBXGroup;
 			children = (
 				E6B04C172A6A9C9D00195B6A /* .gitignore */,
 				E67F951B2A6A9A9500FF3EF8 /* UniMate */,
 				E67F951A2A6A9A9500FF3EF8 /* Products */,
+				E65386002A70EB070057B493 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -192,7 +182,7 @@
 		E67F951B2A6A9A9500FF3EF8 /* UniMate */ = {
 			isa = PBXGroup;
 			children = (
-				6711BDA82A6FE66900C4074F /* Database */,
+				E673F6442A711062007E309E /* Info.plist */,
 				675AD69E2A6C124E00EB559C /* Main */,
 				E6B04C1A2A6AA95600195B6A /* Login */,
 				E67F951C2A6A9A9500FF3EF8 /* UniMateApp.swift */,
@@ -201,7 +191,7 @@
 				E67F95222A6A9A9600FF3EF8 /* Preview Content */,
 				675AD6B12A6C13AC00EB559C /* NumbersOnly.swift */,
 				E6823D3C2A6FB6430028AFE4 /* AppStateManager.swift */,
-				6711BDA62A6FC34C00C4074F /* GoogleService-Info.plist */,
+				E65386032A70EC150057B493 /* GoogleService-Info.plist */,
 			);
 			path = UniMate;
 			sourceTree = "<group>";
@@ -317,7 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E67F95242A6A9A9600FF3EF8 /* Preview Assets.xcassets in Resources */,
-				6711BDA72A6FC34C00C4074F /* GoogleService-Info.plist in Resources */,
+				E65386042A70EC150057B493 /* GoogleService-Info.plist in Resources */,
 				E6B04C182A6A9C9D00195B6A /* .gitignore in Resources */,
 				E67F95212A6A9A9600FF3EF8 /* Assets.xcassets in Resources */,
 			);
@@ -342,16 +332,12 @@
 				E6823D3D2A6FB6430028AFE4 /* AppStateManager.swift in Sources */,
 				670F34B32A70E4C000F10843 /* FreeBoardDetailPage.swift in Sources */,
 				675AD6AE2A6C135000EB559C /* UnivVerificationPage.swift in Sources */,
-				6711BDB02A6FE6D800C4074F /* PostDB.swift in Sources */,
-				6711BDAA2A6FE68D00C4074F /* Board.swift in Sources */,
-				6711BDAE2A6FE6C200C4074F /* Post.swift in Sources */,
 				E6F7E3AD2A6E96B100CCB8CA /* BoardDetailPage.swift in Sources */,
 				675AD6A62A6C12B500EB559C /* MessagePage.swift in Sources */,
 				675AD6A02A6C126D00EB559C /* BoardPage.swift in Sources */,
 				E60557862A6EB4FB001C2240 /* CreatePostPage.swift in Sources */,
 				675AD6A82A6C12D300EB559C /* NotificationPage.swift in Sources */,
 				675AD6A22A6C128C00EB559C /* LeaderBoardPage.swift in Sources */,
-				6711BDAC2A6FE69D00C4074F /* BoardDB.swift in Sources */,
 				675AD6B42A6C253A00EB559C /* UniversitiesData.swift in Sources */,
 				675AD6A42A6C129F00EB559C /* MainTabView.swift in Sources */,
 				670F34B82A70E61500F10843 /* FreeBoardPostDetailPage.swift in Sources */,
@@ -485,12 +471,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"UniMate/Preview Content\"";
-				DEVELOPMENT_TEAM = 2669QVJ2W9;
+				DEVELOPMENT_TEAM = WQ9H4MD594;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UniMate/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -498,7 +484,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cactus.UniMate;
+				PRODUCT_BUNDLE_IDENTIFIER = "cactus.UniMate-cactus";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -514,12 +500,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"UniMate/Preview Content\"";
-				DEVELOPMENT_TEAM = 2669QVJ2W9;
+				DEVELOPMENT_TEAM = WQ9H4MD594;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UniMate/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -527,7 +513,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cactus.UniMate;
+				PRODUCT_BUNDLE_IDENTIFIER = "cactus.UniMate-cactus";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

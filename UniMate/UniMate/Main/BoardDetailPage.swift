@@ -108,6 +108,7 @@ struct BoardDetailView: View {
                 
                 
             }
+            
             .onAppear(perform: loadPosts)
         }
         .navigationBarBackButtonHidden()

@@ -15,7 +15,8 @@ struct LeaderBoardView: View {
         University(name: "GIST", likesCount: 0),
         University(name: "한양대", likesCount: 0),
         University(name: "성균관대", likesCount: 0),
-        University(name: "숙명여대", likesCount: 0)
+        University(name: "숙명여대", likesCount: 0),
+        
     ]
     let ref = Database.database().reference()
 

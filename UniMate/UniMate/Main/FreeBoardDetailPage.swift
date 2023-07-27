@@ -16,7 +16,7 @@ struct FreeBoardDetailView: View {
         NavigationView {
             ScrollView {
                 ForEach(posts) { post in
-                    NavigationLink(destination: FreeBoardPostDetailView(likeCount:0,post: post)) {
+                    NavigationLink(destination: FreeBoardPostDetailView(likeCount:0,commentCount:0,post: post)) {
                         VStack(alignment: .leading) {
                             VStack(alignment: .leading) {
                                 Text(post.title)
@@ -30,7 +30,7 @@ struct FreeBoardDetailView: View {
                             }
                             
                             HStack {
-                                Text("익명")
+                                Text(post.university)
                                     .font(.system(size: 12))
                                     .foregroundColor(Color(UIColor(hexCode: "665E5E")))
                                 

@@ -21,7 +21,7 @@ struct FreeBoardPostDetailView: View {
     @State var comments: [Comment] = []
     @State private var university: String = ""
     @State private var userID: String = ""
-
+    @State var commentCount: Int
     
     var post: FreeBoardPost
     
@@ -59,13 +59,7 @@ struct FreeBoardPostDetailView: View {
                                 .font(.system(size: 12))
                                 .foregroundColor(.red)
                                 .onTapGesture {
-                                    if like {
-                                        like = false
-                                        likeCount -= 1
-                                    } else {
-                                        like = true
-                                        likeCount += 1
-                                    }
+                                    toggleLikeStatus()
                                 }
                             Label(String(post.commentCount), systemImage: "message")
                                 .font(.system(size: 12))
@@ -122,7 +116,12 @@ struct FreeBoardPostDetailView: View {
                             "university": newComment.university
                         ])
 
-                        comment = ""
+                        
+                        commentCount += 1
+                                let postDB = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("posts").child(post.postID)
+                                postDB.updateChildValues(["commentCount": commentCount])
+
+                                comment = ""
 
                     } label: {
                         Image(systemName: "pencil.line")
@@ -166,9 +165,55 @@ struct FreeBoardPostDetailView: View {
         .onAppear(perform:{
             loadUserData()
             loadComments()
+            loadLikeStatus()
+            loadLikeCount()
         }
         )
     }
+    func loadLikeStatus() {
+        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+
+        // Check if the user liked the post
+        db.child("likes").child(userID).child(post.postID).observeSingleEvent(of: .value) { snapshot in
+            self.like = snapshot.value as? Bool ?? false
+        }
+    }
+    
+    
+    func loadLikeCount() {
+        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+
+        // Fetch the likesCount of the post
+        db.child("freeBoard").child(post.postID).observeSingleEvent(of: .value) { snapshot in
+            if let postData = snapshot.value as? [String: Any] {
+                self.likeCount = postData["likesCount"] as? Int ?? 0
+            }
+        }
+    }
+
+
+
+    func toggleLikeStatus() {
+        like = !like
+        
+        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        
+        // Update the user's like status
+        db.child("likes").child(userID).child(post.postID).setValue(like)
+        
+        // Update the post's like count
+        db.child("freeBoard").child(post.postID).observeSingleEvent(of: .value) { snapshot in
+            if var postData = snapshot.value as? [String: Any] {
+                var likesCount = postData["likesCount"] as? Int ?? 0
+                likesCount = like ? likesCount + 1 : likesCount - 1
+                postData["likesCount"] = likesCount
+                self.likeCount = likesCount
+                snapshot.ref.setValue(postData)
+            }
+        }
+    }
+
+
     func loadUserData() {
         if let user = Auth.auth().currentUser {
             self.userID = user.uid
@@ -213,9 +258,8 @@ struct FreeBoardPostDetailView: View {
 
 struct FreeBoardPostDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        FreeBoardPostDetailView(likeCount: 0,post: FreeBoardPost(author: "author", title: "Test", text: "Test Content", timestamp: Date().timeIntervalSince1970, postID: "postID", likesCount: 5, university: "고려대학교", commentCount: 3))
-
-
+        FreeBoardPostDetailView(likeCount: 4, commentCount: 3, post: FreeBoardPost(author: "author", title: "Test", text: "Test Content", timestamp: Date().timeIntervalSince1970, postID: "postID",  likesCount: 5,university: "고려대학교", commentCount: 3))
     }
 }
+
 

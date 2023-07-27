@@ -73,8 +73,7 @@ struct PostDetailView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         // title and author
-                        Text(post.title)
-                            .bold()
+                        
 
                         
                         
@@ -90,8 +89,14 @@ struct PostDetailView: View {
                             .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
                         }
                         
-                        
                         Divider()
+                        
+                        Text(post.title)
+                            .font(.title3)
+                            .bold()
+                            .padding(.horizontal, 5)
+                        
+                        
                         
                         // post content
                         Text(post.text)
@@ -141,7 +146,7 @@ struct PostDetailView: View {
                                 .font(.system(size: 12))
                                 .foregroundColor(.blue)
                         }
-                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 5, trailing: 0))
+                        .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
                     
 
                         Divider()
@@ -159,6 +164,8 @@ struct PostDetailView: View {
                                 }
             
                                 Text(comment.text)
+                                
+                                Divider()
                                     
                             }
                         }

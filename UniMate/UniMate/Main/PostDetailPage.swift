@@ -29,10 +29,6 @@ struct PostDetailView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         // title and author
-                        Text(post.title)
-                            .bold()
-
-                        
                         
                         HStack {
                             Image(systemName: "person")
@@ -46,8 +42,15 @@ struct PostDetailView: View {
                             .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
                         }
                         
-                        
                         Divider()
+                        
+                        Text(post.title)
+                            .font(.title3)
+                            .bold()
+                            .padding(.bottom, 10)
+                        
+                        
+                        
                         
                         // post content
                         Text(post.text)
@@ -82,7 +85,8 @@ struct PostDetailView: View {
                                 }
             
                                 Text(comment.text)
-                                    
+                                
+                                Divider()
                             }
                         }
                         

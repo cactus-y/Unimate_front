@@ -30,6 +30,7 @@ struct LeaderBoardView: View {
                     }
                 }
                 .navigationTitle("학교 순위")
+                .navigationBarTitleDisplayMode(.inline)
             }
         }
         .onAppear(perform: getLikesFromFirebase)
@@ -56,7 +57,7 @@ struct LeaderBoardView: View {
 struct UniversityView: View {
     var rank: Int
     @Binding var university: University
-    let ref = Database.database().reference()
+    let ref = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
 
     var body: some View {
         HStack {

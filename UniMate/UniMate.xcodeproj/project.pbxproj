@@ -46,6 +46,7 @@
 		675AD6B22A6C13AC00EB559C /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD6B12A6C13AC00EB559C /* NumbersOnly.swift */; };
 		675AD6B42A6C253A00EB559C /* UniversitiesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675AD6B32A6C253A00EB559C /* UniversitiesData.swift */; };
 		E60557862A6EB4FB001C2240 /* CreatePostPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60557852A6EB4FB001C2240 /* CreatePostPage.swift */; };
+		E613782F2A72722B00012D6D /* BestPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613782E2A72722B00012D6D /* BestPost.swift */; };
 		E65386042A70EC150057B493 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E65386032A70EC150057B493 /* GoogleService-Info.plist */; };
 		E67F951D2A6A9A9500FF3EF8 /* UniMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F951C2A6A9A9500FF3EF8 /* UniMateApp.swift */; };
 		E67F951F2A6A9A9500FF3EF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67F951E2A6A9A9500FF3EF8 /* ContentView.swift */; };
@@ -75,6 +76,7 @@
 		675AD6B12A6C13AC00EB559C /* NumbersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOnly.swift; sourceTree = "<group>"; };
 		675AD6B32A6C253A00EB559C /* UniversitiesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversitiesData.swift; sourceTree = "<group>"; };
 		E60557852A6EB4FB001C2240 /* CreatePostPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostPage.swift; sourceTree = "<group>"; };
+		E613782E2A72722B00012D6D /* BestPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPost.swift; sourceTree = "<group>"; };
 		E65386032A70EC150057B493 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E673F6442A711062007E309E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E67F95192A6A9A9500FF3EF8 /* UniMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 				E60557852A6EB4FB001C2240 /* CreatePostPage.swift */,
 				E6B43BD32A723911003B3D60 /* Post.swift */,
 				E6B43BD52A7240F2003B3D60 /* Comment.swift */,
+				E613782E2A72722B00012D6D /* BestPost.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				675AD6AC2A6C132A00EB559C /* UnivInfoSignUpPage.swift in Sources */,
 				E6823D392A6F8B150028AFE4 /* MessageDetailPage.swift in Sources */,
 				E6B43BD42A723911003B3D60 /* Post.swift in Sources */,
+				E613782F2A72722B00012D6D /* BestPost.swift in Sources */,
 				675AD6B02A6C137600EB559C /* UserInfoSignUpPage.swift in Sources */,
 				E6F7E3AA2A6E5D3A00CCB8CA /* PostDetailPage.swift in Sources */,
 				E67F951F2A6A9A9500FF3EF8 /* ContentView.swift in Sources */,

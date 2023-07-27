@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import FirebaseDatabase
 
 struct BoardView: View {
+    
+    @State private var bestPosts: [BestPost] = []
+    @State private var posts: [Post] = []
     var body: some View {
         NavigationView {
             ScrollView {
@@ -182,6 +186,7 @@ struct BoardView: View {
                 .padding(.vertical)
                 .padding(.horizontal)
             }
+            .onAppear(perform: loadBestPosts)
             .navigationTitle("게시판")
             .navigationBarTitleDisplayMode(.inline)
             
@@ -190,6 +195,47 @@ struct BoardView: View {
             
 
         }
+    }
+    
+    private func loadBestPosts() {
+        let bestDB = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app/").reference().child("bestBoard")
+        
+        bestDB.observeSingleEvent(of: .value) { (snapshot, string) in
+            self.bestPosts = []
+            
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                if let dict = child.value as? [String: Any],
+                   let postID = dict["postID"] as? String,
+                   let originalBoardName = dict["originalBoardName"] as? String,
+                   let bestTimestamp = dict["bestTimestamp"] as? TimeInterval {
+                    let bestPost = BestPost(postID: postID, originalBoardName: originalBoardName, bestTimestamp: bestTimestamp)
+                    self.bestPosts.append(bestPost)
+                }
+            }
+            
+            self.bestPosts.sort { $0.bestTimestamp > $1.bestTimestamp }
+        }
+        
+//        for bestpost in self.bestPosts {
+//            let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app/").reference()
+//
+//            db.child(bestpost.originalBoardName).child(bestpost.postID).observeSingleEvent(of: .value) { snapshot in
+//                if var postData = snapshot.value as? [String: Any] {
+//                    let author = postData["author"] as? String
+//                    let title = postData["title"] as? String
+//                    let commentCount = postData["commentCount"] as? Int
+//                    let likesCount = postData["likesCount"] as? Int
+//                    let postID = postData["postID"] as? String
+//                    let text = postData["text"] as? String
+//                    let timestamp = postData["timestamp"] as? TimeInterval
+//                    let university = postData["university"] as? String
+//
+//                    let post = Post(author: author, title: title, text: text, timestamp: timestamp, postID: postID, likesCount: likesCount, university: university, commentCount: commentCount)
+//
+//                    self.posts.append(post)
+//                }
+//            }
+//        }
     }
 }
 

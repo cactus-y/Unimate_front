@@ -1,13 +1,7 @@
-//
-//  CreatePostPage.swift
-//  UniMate
-//
-//  Created by 유석원 on 2023/07/24.
-//
-
 import SwiftUI
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
 struct CreatePostView: View {
     @Environment(\.dismiss) private var dismiss
@@ -18,7 +12,10 @@ struct CreatePostView: View {
     @State private var postContent: String = ""
     @State private var userId: String = ""
     @State private var university: String = ""
-    
+
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -49,12 +46,26 @@ struct CreatePostView: View {
                             .disabled(true)
                             .padding(.leading, 15)
                     }
-    
-                    
                 }
                 
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        self.showingImagePicker = true
+                    }, label: {
+                        Text("이미지 추가하기")
+                            .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                            .padding(.horizontal, 15)
+                            .padding(.vertical, 5)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color(UIColor(hexCode: "665E5E")), lineWidth: 1)
+                            )
+                    })
+                    Spacer()
+                }.padding()
+
                 Spacer()
-                
                 
             }
             .navigationTitle("새 글 쓰기")
@@ -76,11 +87,13 @@ struct CreatePostView: View {
                         Text("완료")
                             .foregroundColor(.black)
                     })
-                    .disabled(title == "" || postContent == "")
                 }
             }
+            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                ImagePicker(image: self.$inputImage)
+            }
         }
-        .navigationBarBackButtonHidden()
+        .navigationBarBackButtonHidden(true)
         .onAppear(perform: loadUserData)
     }
     
@@ -102,16 +115,43 @@ struct CreatePostView: View {
             return
         }
 
-        // We will generate the timestamp inside this function
         let timestamp = Date().timeIntervalSince1970
 
-        // We generate a new post ID by creating a new child in the "freeBoard" node
         let database = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app/")
         let postRef = database.reference().child(boardName).childByAutoId()
 
-        let post = Post(author: user.uid, title: title, text: postContent, timestamp: timestamp, postID: postRef.key ?? "", likesCount: 0, university: university,commentCount: 0)
+        if let imageData = inputImage?.jpegData(compressionQuality: 0.5) {
+            let storageRef = Storage.storage().reference().child("postImages/\(postRef.key!).jpg")
 
-        // Convert our post to a dictionary because this is the data type that Firebase expects
+            storageRef.putData(imageData, metadata: nil) { (_, error) in
+                if let error = error {
+                    print("Error uploading image: \(error)")
+                    return
+                }
+
+                storageRef.downloadURL { (url, error) in
+                    if let error = error {
+                        print("Error getting download URL: \(error)")
+                        return
+                    }
+                    guard let url = url else {
+                        print("URL is nil")
+                        return
+                    }
+
+                    let post = Post(author: user.uid, title: title, text: postContent, timestamp: timestamp, postID: postRef.key ?? "", likesCount: 0, university: university, commentCount: 0, imageURL: url.absoluteString)
+
+                    self.savePost(post, at: postRef)
+                }
+            }
+        } else {
+            let post = Post(author: user.uid, title: title, text: postContent, timestamp: timestamp, postID: postRef.key ?? "", likesCount: 0, university: university, commentCount: 0, imageURL: "")
+
+            self.savePost(post, at: postRef)
+        }
+    }
+
+    private func savePost(_ post: Post, at ref: DatabaseReference) {
         let postData = [
             "author": post.author,
             "title": post.title,
@@ -121,10 +161,10 @@ struct CreatePostView: View {
             "likesCount": post.likesCount,
             "university":post.university,
             "commentCount":post.commentCount,
+            "imageURL": post.imageURL
         ] as [String : Any]
 
-        // Save our post data to the new post ID
-        postRef.setValue(postData) { (error, _) in
+        ref.setValue(postData) { (error, _) in
             if let error = error {
                 print("Data could not be saved: \(error).")
             } else {
@@ -133,10 +173,10 @@ struct CreatePostView: View {
             }
         }
     }
-}
 
-//struct CreatePostView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CreatePostView()
-//    }
-//}
+
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        self.inputImage = inputImage
+    }
+}

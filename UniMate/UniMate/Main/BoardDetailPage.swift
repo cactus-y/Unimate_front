@@ -101,18 +101,13 @@ struct BoardDetailView: View {
                         .fullScreenCover(isPresented: $isPresented) {
                             // pass title to CreatePostView()
                             CreatePostView(boardName: dbBoardName)
-                                .onDisappear {
-                                    loadPosts()
-                                }
                         }
-                        
                         
                     }
                 }
                 
                 
             }
-            
             .onAppear(perform: loadPosts)
         }
         .navigationBarBackButtonHidden()
@@ -151,10 +146,12 @@ struct BoardDetailView: View {
                        let postID = dict["postID"] as? String,
                        let likesCount = dict["likesCount"] as? Int,
                        let university = dict["university"] as? String,
-                       let commentCount = dict["commentCount"] as? Int {
-                        let post = Post(author: author, title: title, text: text, timestamp: timestamp, postID: postID, likesCount: likesCount, university: university, commentCount: commentCount)
+                       let commentCount = dict["commentCount"] as? Int,
+                       let imageURL = dict["imageURL"] as? String {  // Add this line for imageURL
+                        let post = Post(author: author, title: title, text: text, timestamp: timestamp, postID: postID, likesCount: likesCount, university: university, commentCount: commentCount, imageURL: imageURL) // Update this line with imageURL
                         self.posts.append(post)
                     }
+
                 }
                 self.posts.sort{ $0.timestamp > $1.timestamp }
             }

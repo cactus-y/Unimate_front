@@ -17,4 +17,5 @@ struct Post: Identifiable {
     let likesCount: Int
     let university: String
     let commentCount: Int
+    let imageURL: String
 }

@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import FirebaseDatabase
+import FirebaseAuth
 
 struct CreatePostView: View {
     @Environment(\.dismiss) private var dismiss
     
-    @State var title: String = ""
-    @State var postContent: String = ""
+    var boardName: String
+    
+    @State private var title: String = ""
+    @State private var postContent: String = ""
+    @State private var userId: String = ""
+    @State private var university: String = ""
     
     var body: some View {
         NavigationView {
@@ -24,15 +30,8 @@ struct CreatePostView: View {
                 .padding(.top, 10)
                 .background(.white)
                 .padding(.horizontal)
+                
                 Divider()
-//                TextField("내용",
-//                          text: $postContent,
-//                          axis: .vertical
-//
-//                )
-//                .padding(15)
-//                .background(.white)
-//                .padding(.horizontal)
                 
                 
                 ZStack(alignment: .topLeading) {
@@ -72,9 +71,7 @@ struct CreatePostView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        // later change the action
-                        print("go back to board detail view")
-                        dismiss()
+                        self.uploadPost()
                     }, label: {
                         Text("완료")
                             .foregroundColor(.black)
@@ -83,11 +80,62 @@ struct CreatePostView: View {
             }
         }
         .navigationBarBackButtonHidden()
+        .onAppear(perform: loadUserData)
+    }
+    
+    func loadUserData() {
+        if let user = Auth.auth().currentUser {
+            self.userId = user.uid
+            
+            let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("users").child(self.userId)
+
+            db.child("university").observeSingleEvent(of: .value) { snapshot in
+                self.university = snapshot.value as? String ?? ""
+            }
+        }
+    }
+    
+    private func uploadPost() {
+        guard let user = Auth.auth().currentUser else {
+            print("No user logged in.")
+            return
+        }
+
+        // We will generate the timestamp inside this function
+        let timestamp = Date().timeIntervalSince1970
+
+        // We generate a new post ID by creating a new child in the "freeBoard" node
+        let database = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app/")
+        let postRef = database.reference().child(boardName).childByAutoId()
+
+        let post = Post(author: user.uid, title: title, text: postContent, timestamp: timestamp, postID: postRef.key ?? "", likesCount: 0, university: university,commentCount: 0)
+
+        // Convert our post to a dictionary because this is the data type that Firebase expects
+        let postData = [
+            "author": post.author,
+            "title": post.title,
+            "text": post.text,
+            "timestamp": post.timestamp,
+            "postID": post.postID,
+            "likesCount": post.likesCount,
+            "university":post.university,
+            "commentCount":post.commentCount,
+        ] as [String : Any]
+
+        // Save our post data to the new post ID
+        postRef.setValue(postData) { (error, _) in
+            if let error = error {
+                print("Data could not be saved: \(error).")
+            } else {
+                print("Data saved successfully!")
+                self.dismiss()
+            }
+        }
     }
 }
 
-struct CreatePostView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreatePostView()
-    }
-}
+//struct CreatePostView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreatePostView()
+//    }
+//}

@@ -6,13 +6,22 @@
 //
 
 import SwiftUI
+import FirebaseDatabase
+import FirebaseAuth
 
 struct PostDetailView: View {
     @Environment(\.dismiss) private var dismiss
     
-    @State var comment: String = ""
-    @State var like: Bool = false
-    @State var likeCount: Int = 3
+    var post: Post
+    var boardName: String
+    
+    @State private var newComment: String = ""
+    @State private var comments: [Comment] = []
+    @State private var userId: String = ""
+    @State private var university: String = ""
+    @State private var like: Bool = false
+    @State var likeCount: Int = 0
+    @State var commentCount: Int = 0
     
     var body: some View {
         NavigationView {
@@ -20,7 +29,7 @@ struct PostDetailView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         // title and author
-                        Text("Title1")
+                        Text(post.title)
                             .bold()
 
                         
@@ -28,9 +37,9 @@ struct PostDetailView: View {
                         HStack {
                             Image(systemName: "person")
                             VStack(alignment: .leading) {
-                                Text("고려대학교1")
+                                Text(post.university)
                                     .bold()
-                                Text("07/23 12:00")
+                                Text(formatDate(timestamp: post.timestamp))
                                     .font(.system(size: 12))
                                     .foregroundColor(Color(UIColor(hexCode: "665E5E")))
                             }
@@ -41,71 +50,49 @@ struct PostDetailView: View {
                         Divider()
                         
                         // post content
-                        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam bibendum purus sit amet pretium placerat. Aenean placerat erat non enim varius efficitur. Mauris quis vehicula urna, sit amet congue nisi. Aliquam maximus magna quis volutpat commodo. Vivamus elit erat, bibendum nec ante a, feugiat lobortis erat. Vestibulum id arcu at leo laoreet vestibulum nec vel ligula. Donec hendrerit, odio et ornare consequat, tellus felis placerat augue, ac egestas velit odio eget felis. Quisque nisi orci, blandit ac condimentum auctor, malesuada sit amet diam. Donec congue, lacus vel elementum ornare, orci ligula pellentesque leo, id molestie tortor augue vitae diam. Mauris orci magna, mattis eget ullamcorper nec, bibendum egestas dolor. Nullam et ipsum fermentum, pharetra ante non, placerat elit. Nulla consequat purus sit amet metus sollicitudin, rhoncus tempus ex pellentesque.")
+                        Text(post.text)
                         
                         // like/unlike
                         HStack {
-                            Label(String(likeCount), systemImage: like ? "hand.thumbsup.fill" : "hand.thumbsup")
+                            Label(String(post.likesCount), systemImage: like ? "hand.thumbsup.fill" : "hand.thumbsup")
                                 .font(.system(size: 12))
                                 .foregroundColor(.red)
                                 .onTapGesture {
-                                    if like {
-                                        like = false
-                                        likeCount -= 1
-                                    } else {
-                                        like = true
-                                        likeCount += 1
-                                    }
+                                    toggleLikeStatus()
                                 }
-                            Label("5", systemImage: "message")
+                            Label(String(post.commentCount), systemImage: "message")
                                 .font(.system(size: 12))
                                 .foregroundColor(.blue)
                         }
                         .padding(EdgeInsets(top: 10, leading: 0, bottom: 5, trailing: 0))
-                        
-//                        HStack {
-//                            Spacer()
-//
-//                            Button {
-//                                print("Like")
-//                            } label: {
-//                                Image(systemName: "hand.thumbsup.circle")
-//                                    .resizable()
-//                                    .frame(width: 50, height: 50)
-//
-//                                    .foregroundColor(Color(UIColor(hexCode: "70BBF9")))
-//                                    .cornerRadius(15)
-//                            }
-//
-//                            Spacer()
-//                        }
-        
-                        
-                        
-                        
+                    
+
                         Divider()
                         // comments list
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Image(systemName: "person")
-                                Text("한양대학교1")
-                                    .bold()
-                                Spacer()
-                                Text("07/23 12:01")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                        ForEach(comments) { comment in
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Image(systemName: "person")
+                                    Text(comment.university)
+                                        .bold()
+                                    Spacer()
+                                    Text(formatDate(timestamp: comment.timestamp))
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+                                }
+            
+                                Text(comment.text)
+                                    
                             }
-        
-                            Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-                                
                         }
+                        
                         
                     }
                     .padding(15)
                 }
                 HStack {
                     TextField("Comment",
-                              text: $comment,
+                              text: $newComment,
                               prompt: Text("댓글 쓰기").foregroundColor(Color(UIColor(hexCode: "665E5E")))
                     )
                     .padding(15)
@@ -116,6 +103,36 @@ struct PostDetailView: View {
                     
                     Button {
                         print("Write a comment")
+                        
+                        let c = Comment(author: self.userId, text: newComment, timestamp: Date().timeIntervalSince1970, postID: post.postID, university: university)
+                        
+                        comments.append(c)
+                        
+                        // add to db
+                        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("comments").childByAutoId()
+                        
+                        db.setValue([
+                            "author": c.author,
+                            "text": c.text,
+                            "timestamp": c.timestamp,
+                            "postID": c.postID,
+                            "university": c.university
+                        ])
+                        
+                        // fetch current commentCount of the post
+                        let postDB = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child(boardName).child(c.postID)
+                        
+                        postDB.observeSingleEvent(of: .value) { snapshot in
+                            if let postData = snapshot.value as? [String: Any] {
+                                var commentCount = postData["commentCount"] as? Int ?? 0
+                                commentCount += 1
+                                
+                                // update commentCount of the post
+                                postDB.updateChildValues(["commentCount": commentCount])
+                            }
+                        }
+                        
+                        newComment = ""
                     } label: {
                         Image(systemName: "pencil.line")
                             .padding(17)
@@ -124,7 +141,7 @@ struct PostDetailView: View {
                             .cornerRadius(15)
                     }
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
-                    .disabled(comment.isEmpty)
+                    .disabled(newComment.isEmpty)
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
             }
@@ -154,11 +171,105 @@ struct PostDetailView: View {
             }
         }
         .navigationBarBackButtonHidden()
+        .onAppear(perform: {
+            loadUserData()
+            loadComments()
+            loadLikeStatus()
+            loadLikeCount()
+        })
+    }
+    
+    func loadLikeStatus() {
+        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        // Check if the user liked the post
+        db.child("likes").child(userId).child(post.postID).observeSingleEvent(of: .value) { snapshot in
+            self.like = snapshot.value as? Bool ?? false
+        }
+    }
+    
+    
+    func loadLikeCount() {
+        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+
+        // Fetch the likesCount of the post
+        db.child(boardName).child(post.postID).observeSingleEvent(of: .value) { snapshot in
+            if let postData = snapshot.value as? [String: Any] {
+                self.likeCount = postData["likesCount"] as? Int ?? 0
+            }
+        }
+    }
+
+    
+    func toggleLikeStatus() {
+        like = !like
+        
+        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        
+        // update user's like status
+        db.child("likes").child(userId).child(post.postID).setValue(like)
+        
+        // update post's like status
+        db.child(boardName).child(post.postID).observeSingleEvent(of: .value) { snapshot in
+            if var postData = snapshot.value as? [String: Any] {
+                var likesCount = postData["likesCount"] as? Int ?? 0
+                likesCount = like ? likesCount + 1 : likesCount - 1
+                postData["likesCount"] = likesCount
+                self.likeCount = likesCount
+                snapshot.ref.setValue(postData)
+            }
+        }
+    }
+    
+    func loadUserData() {
+        if let user = Auth.auth().currentUser {
+            self.userId = user.uid
+            
+            let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+            
+            let dbUser = db.child("users").child(self.userId)
+            
+            dbUser.child("university").observeSingleEvent(of: .value) { snapshot in
+                self.university = snapshot.value as? String ?? ""
+            }
+        }
+    }
+    
+    func loadComments() {
+        let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
+        
+        let commentDB = db.child("comments")
+        
+        commentDB.observe(.value) { snapshot in
+            var loadedComments = [Comment]()
+            
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                   let commentData = snapshot.value as? [String: Any],
+                   let author = commentData["author"] as? String,
+                   let text = commentData["text"] as? String,
+                   let timestamp = commentData["timestamp"] as? TimeInterval,
+                   let postID = commentData["postID"] as? String,
+                   let university = commentData["university"] as? String,
+                   postID == self.post.postID
+                {
+                    let comment = Comment(author: author, text: text, timestamp: timestamp, postID: postID, university: university)
+                    loadedComments.append(comment)
+                }
+            }
+            self.comments = loadedComments.sorted(by: { $0.timestamp < $1.timestamp })
+        }
+    }
+    
+    func formatDate(timestamp: TimeInterval) -> String {
+        let date = Date(timeIntervalSince1970: timestamp)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd HH:mm"
+        return formatter.string(from: date)
     }
 }
 
-struct PostDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostDetailView()
-    }
-}
+//struct PostDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PostDetailView()
+//    }
+//}

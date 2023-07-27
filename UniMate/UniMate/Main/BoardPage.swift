@@ -30,235 +30,56 @@ struct BoardView: View {
                     Divider()
                         .background(Color.black)
                     
-                    NavigationLink(destination: PostDetailView()) {
-                        VStack(alignment: .leading) {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Image(systemName: "person")
-                                        .foregroundColor(.black)
-                                    Text("익명")
-                                        .foregroundColor(.black)
-                                        .bold()
-                                    Spacer()
-                                    Text("07/23")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                                }
-                                Text("Title1")
-                                    .foregroundColor(.black)
-                                    .bold()
-                                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-                                    .foregroundColor(.black)
-                                    .lineLimit(2)
-                            }
-                            
-                            HStack {
-                                Text("자유게시판")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                                Spacer()
-                                Label("3", systemImage: "hand.thumbsup")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.red)
-                                Label("5", systemImage: "message")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.blue)
-                            }
-                            
-                        }
-                        .frame(alignment: .leading)
-                        .padding(10)
-//                        .onTapGesture {
-//                            print("Move to PostDetailView")
-//                            NavigationLink(destination: PostDetailView(), label: {
-//                                Text("")
-//                            })
+//                    NavigationLink(destination: PostDetailView()) {
+//                        VStack(alignment: .leading) {
+//                            VStack(alignment: .leading) {
+//                                HStack {
+//                                    Image(systemName: "person")
+//                                        .foregroundColor(.black)
+//                                    Text("익명")
+//                                        .foregroundColor(.black)
+//                                        .bold()
+//                                    Spacer()
+//                                    Text("07/23")
+//                                        .font(.system(size: 12))
+//                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+//                                }
+//                                Text("Title1")
+//                                    .foregroundColor(.black)
+//                                    .bold()
+//                                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
+//                                    .foregroundColor(.black)
+//                                    .lineLimit(2)
+//                            }
+//
+//                            HStack {
+//                                Text("자유게시판")
+//                                    .font(.system(size: 12))
+//                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
+//                                Spacer()
+//                                Label("3", systemImage: "hand.thumbsup")
+//                                    .font(.system(size: 12))
+//                                    .foregroundColor(.red)
+//                                Label("5", systemImage: "message")
+//                                    .font(.system(size: 12))
+//                                    .foregroundColor(.blue)
+//                            }
+//
 //                        }
-                    }
+//                        .frame(alignment: .leading)
+//                        .padding(10)
+////                        .onTapGesture {
+////                            print("Move to PostDetailView")
+////                            NavigationLink(destination: PostDetailView(), label: {
+////                                Text("")
+////                            })
+////                        }
+//                    }
                     
-                    NavigationLink(destination: PostDetailView()) {
-                        VStack(alignment: .leading) {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Image(systemName: "person")
-                                        .foregroundColor(.black)
-                                    Text("익명")
-                                        .foregroundColor(.black)
-                                        .bold()
-                                    Spacer()
-                                    Text("07/23")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                                }
-                                Text("Title1")
-                                    .foregroundColor(.black)
-                                    .bold()
-                                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-                                    .foregroundColor(.black)
-                                    .lineLimit(2)
-                            }
-                            
-                            HStack {
-                                Text("자유게시판")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                                Spacer()
-                                Label("3", systemImage: "hand.thumbsup")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.red)
-                                Label("5", systemImage: "message")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.blue)
-                            }
-                            
-                        }
-                        .frame(alignment: .leading)
-                        .padding(10)
-//                        .onTapGesture {
-//                            print("Move to PostDetailView")
-//                            NavigationLink(destination: PostDetailView(), label: {
-//                                Text("")
-//                            })
-//                        }
-                    }
                     
-                    NavigationLink(destination: PostDetailView()) {
-                        VStack(alignment: .leading) {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Image(systemName: "person")
-                                        .foregroundColor(.black)
-                                    Text("익명")
-                                        .foregroundColor(.black)
-                                        .bold()
-                                    Spacer()
-                                    Text("07/23")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                                }
-                                Text("Title1")
-                                    .foregroundColor(.black)
-                                    .bold()
-                                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-                                    .foregroundColor(.black)
-                                    .lineLimit(2)
-                            }
                             
-                            HStack {
-                                Text("자유게시판")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                                Spacer()
-                                Label("3", systemImage: "hand.thumbsup")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.red)
-                                Label("5", systemImage: "message")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.blue)
-                            }
-                            
-                        }
-                        .frame(alignment: .leading)
-                        .padding(10)
-//                        .onTapGesture {
-//                            print("Move to PostDetailView")
-//                            NavigationLink(destination: PostDetailView(), label: {
-//                                Text("")
-//                            })
-//                        }
-                    }
-                    
-                    NavigationLink(destination: PostDetailView()) {
-                        VStack(alignment: .leading) {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Image(systemName: "person")
-                                        .foregroundColor(.black)
-                                    Text("익명")
-                                        .foregroundColor(.black)
-                                        .bold()
-                                    Spacer()
-                                    Text("07/23")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                                }
-                                Text("Title1")
-                                    .foregroundColor(.black)
-                                    .bold()
-                                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-                                    .foregroundColor(.black)
-                                    .lineLimit(2)
-                            }
-                            
-                            HStack {
-                                Text("자유게시판")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                                Spacer()
-                                Label("3", systemImage: "hand.thumbsup")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.red)
-                                Label("5", systemImage: "message")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.blue)
-                            }
-                            
-                        }
-                        .frame(alignment: .leading)
-                        .padding(10)
-//                        .onTapGesture {
-//                            print("Move to PostDetailView")
-//                            NavigationLink(destination: PostDetailView(), label: {
-//                                Text("")
-//                            })
-//                        }
-                    }
-                    
-                    NavigationLink(destination: PostDetailView()) {
-                        VStack(alignment: .leading) {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Image(systemName: "person")
-                                        .foregroundColor(.black)
-                                    Text("익명")
-                                        .foregroundColor(.black)
-                                        .bold()
-                                    Spacer()
-                                    Text("07/23")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                                }
-                                Text("Title1")
-                                    .foregroundColor(.black)
-                                    .bold()
-                                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.")
-                                    .foregroundColor(.black)
-                                    .lineLimit(2)
-                            }
-                            
-                            HStack {
-                                Text("자유게시판")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(Color(UIColor(hexCode: "665E5E")))
-                                Spacer()
-                                Label("3", systemImage: "hand.thumbsup")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.red)
-                                Label("5", systemImage: "message")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.blue)
-                            }
-                            
-                        }
-                        .frame(alignment: .leading)
-                        .padding(10)
-//                        .onTapGesture {
-//                            print("Move to PostDetailView")
-//                            NavigationLink(destination: PostDetailView(), label: {
-//                                Text("")
-//                            })
-//                        }
-                    }
+         
+            
                     
                     
                 }
@@ -279,7 +100,7 @@ struct BoardView: View {
                     Divider()
                         .background(Color.black)
                     
-                    NavigationLink(destination: FreeBoardDetailView(title: Binding.constant("자유 게시판"))) {
+                    NavigationLink(destination: BoardDetailView(title: Binding.constant("자유 게시판"))) {
                         HStack {
                             Text("자유 게시판")
                                 .foregroundColor(.black)

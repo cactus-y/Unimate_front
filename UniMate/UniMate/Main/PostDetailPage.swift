@@ -67,7 +67,7 @@ struct PostDetailView: View {
                                 .font(.system(size: 12))
                                 .foregroundColor(.blue)
                         }
-                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 5, trailing: 0))
+                        .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
                     
 
                         Divider()

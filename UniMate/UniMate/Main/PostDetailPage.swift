@@ -9,6 +9,49 @@ import SwiftUI
 import FirebaseDatabase
 import FirebaseAuth
 
+
+class ImageLoader: ObservableObject {
+    @Published var image: UIImage?
+    private var urlString: String
+    
+    init(urlString: String) {
+        self.urlString = urlString
+        self.loadImage()
+    }
+    
+    func loadImage() {
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else { return }
+            DispatchQueue.main.async {
+                self.image = UIImage(data: data)
+            }
+        }.resume()
+    }
+}
+
+struct AsyncImage: View {
+    @StateObject private var loader: ImageLoader
+    private var placeholder: Image
+    
+    init(urlString: String, placeholder: Image = Image(systemName: "photo")) {
+        _loader = StateObject(wrappedValue: ImageLoader(urlString: urlString))
+        self.placeholder = placeholder
+    }
+    
+    var body: some View {
+        Group {
+            if loader.image != nil {
+                Image(uiImage: loader.image!)
+                    .resizable()
+            } else {
+                placeholder
+            }
+        }
+    }
+}
+
+
 struct PostDetailView: View {
     @Environment(\.dismiss) private var dismiss
     
@@ -22,6 +65,7 @@ struct PostDetailView: View {
     @State private var like: Bool = false
     @State var likeCount: Int = 0
     @State var commentCount: Int = 0
+    @State private var showingImage: Bool = false
     
     var body: some View {
         NavigationView {
@@ -29,6 +73,10 @@ struct PostDetailView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         // title and author
+                        Text(post.title)
+                            .bold()
+
+                        
                         
                         HStack {
                             Image(systemName: "person")
@@ -42,18 +90,44 @@ struct PostDetailView: View {
                             .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
                         }
                         
+                        
                         Divider()
-                        
-                        Text(post.title)
-                            .font(.title3)
-                            .bold()
-                            .padding(.bottom, 10)
-                        
-                        
-                        
                         
                         // post content
                         Text(post.text)
+                        
+                        
+                        if !post.imageURL.isEmpty {
+                            Button(action: { showingImage = true }) {
+                                AsyncImage(urlString: post.imageURL)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 200)
+                            }
+                            .fullScreenCover(isPresented: $showingImage) {
+                                VStack {
+                                    HStack {
+                                        Spacer()
+                                        Button(action: { showingImage = false }) {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .resizable()
+                                                .frame(width: 30, height: 30)
+                                                .padding()
+                                                .foregroundColor(.black)
+                                        }
+                                    }
+                                    Spacer()
+                                }
+                                .background(
+                                    AsyncImage(urlString: post.imageURL)
+                                        .aspectRatio(contentMode: .fit)
+                                        .edgesIgnoringSafeArea(.all)
+                                )
+                            }
+                        }
+
+
+                                                
+
                         
                         // like/unlike
                         HStack {
@@ -67,7 +141,7 @@ struct PostDetailView: View {
                                 .font(.system(size: 12))
                                 .foregroundColor(.blue)
                         }
-                        .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 5, trailing: 0))
                     
 
                         Divider()
@@ -85,8 +159,7 @@ struct PostDetailView: View {
                                 }
             
                                 Text(comment.text)
-                                
-                                Divider()
+                                    
                             }
                         }
                         
@@ -220,26 +293,6 @@ struct PostDetailView: View {
                 postData["likesCount"] = likesCount
                 self.likeCount = likesCount
                 snapshot.ref.setValue(postData)
-                
-                if likesCount >= 3 {
-                    let bestBoardDB = db.child("bestBoard").child(post.postID)
-                    
-                    let bestPostData = [
-                        "postID": post.postID,
-                        "originalBoardName": boardName,
-                        "bestTimestamp": Date().timeIntervalSince1970
-                    ]
-                    bestBoardDB.setValue(bestPostData) { (error, _) in
-                        if let error = error {
-                            print("Data could not be saved: \(error).")
-                        } else {
-                            print("Data saved successfully!")
-                        }
-                    }
-                } else {
-                    let inBestBoard = db.child("bestBoard").child(post.postID)
-                    inBestBoard.removeValue()
-                }
             }
         }
     }
@@ -281,7 +334,6 @@ struct PostDetailView: View {
                 }
             }
             self.comments = loadedComments.sorted(by: { $0.timestamp < $1.timestamp })
-            self.commentCount = loadedComments.count
         }
     }
     

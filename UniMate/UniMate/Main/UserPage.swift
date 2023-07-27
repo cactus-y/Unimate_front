@@ -2,6 +2,7 @@ import SwiftUI
 import Firebase
 import FirebaseDatabase
 import FirebaseDatabaseSwift
+import FirebaseStorage
 import UIKit
 
 struct UserView: View {
@@ -73,11 +74,48 @@ struct UserView: View {
             }
         }
     }
+    func uploadImage() {
+        guard let inputImage = inputImage else { return }
+        
+        // Convert the UIImage to Data
+        guard let imageData = inputImage.jpegData(compressionQuality: 0.5) else { return }
+
+        // Create a storage reference
+        let storageRef = Storage.storage().reference().child("userImages/\(self.userID).jpg")
+
+        // Upload the image to Firebase Storage
+        storageRef.putData(imageData, metadata: nil) { (_, error) in
+            if let error = error {
+                print("Error uploading image: \(error)")
+                return
+            }
+
+            // Once the image is uploaded, get the download URL
+            storageRef.downloadURL { (url, error) in
+                if let error = error {
+                    print("Error getting download URL: \(error)")
+                    return
+                }
+                guard let url = url else {
+                    print("URL is nil")
+                    return
+                }
+
+                // Save the download URL to Firebase Database
+                let db = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("users").child(self.userID)
+                db.updateChildValues(["imageURL": url.absoluteString]) { (error, _) in
+                    if let error = error {
+                        print("Error updating values in database: \(error)")
+                    }
+                }
+            }
+        }
+    }
 
     func loadImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
-        // 이 시점에서 inputImage를 Firebase에 업로드하면 됩니다.
+        uploadImage()
     }
 
     func loadUserData() {
@@ -98,8 +136,19 @@ struct UserView: View {
             db.child("university").observeSingleEvent(of: .value) { snapshot in
                 self.university = snapshot.value as? String ?? ""
             }
+            
+            // Load image URL
+            db.child("imageURL").observeSingleEvent(of: .value) { snapshot in
+                if let imageUrl = snapshot.value as? String {
+                    // Assuming you have Kingfisher installed
+                    let url = URL(string: imageUrl)
+                    let data = try? Data(contentsOf: url!)
+                    self.inputImage = UIImage(data: data!)
+                }
+            }
         }
     }
+
     
     func logout() {
 //        Auth.auth().currentUser = nil

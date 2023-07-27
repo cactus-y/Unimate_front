@@ -18,7 +18,7 @@ struct LeaderBoardView: View {
         University(name: "숙명여대", likesCount: 0),
         
     ]
-    let ref = Database.database().reference()
+    let ref = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference()
 
     var body: some View {
         NavigationView {

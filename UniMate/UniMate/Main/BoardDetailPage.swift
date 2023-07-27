@@ -101,7 +101,11 @@ struct BoardDetailView: View {
                         .fullScreenCover(isPresented: $isPresented) {
                             // pass title to CreatePostView()
                             CreatePostView(boardName: dbBoardName)
+                                .onDisappear {
+                                    loadPosts()
+                                }
                         }
+                        
                         
                     }
                 }

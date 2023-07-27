@@ -57,13 +57,13 @@ struct PostDetailView: View {
                         
                         // like/unlike
                         HStack {
-                            Label(String(post.likesCount), systemImage: like ? "hand.thumbsup.fill" : "hand.thumbsup")
+                            Label(String(likeCount), systemImage: like ? "hand.thumbsup.fill" : "hand.thumbsup")
                                 .font(.system(size: 12))
                                 .foregroundColor(.red)
                                 .onTapGesture {
                                     toggleLikeStatus()
                                 }
-                            Label(String(post.commentCount), systemImage: "message")
+                            Label(String(commentCount), systemImage: "message")
                                 .font(.system(size: 12))
                                 .foregroundColor(.blue)
                         }
@@ -220,6 +220,26 @@ struct PostDetailView: View {
                 postData["likesCount"] = likesCount
                 self.likeCount = likesCount
                 snapshot.ref.setValue(postData)
+                
+                if likesCount >= 3 {
+                    let bestBoardDB = db.child("bestBoard").child(post.postID)
+                    
+                    let bestPostData = [
+                        "postID": post.postID,
+                        "originalBoardName": boardName,
+                        "bestTimestamp": Date().timeIntervalSince1970
+                    ]
+                    bestBoardDB.setValue(bestPostData) { (error, _) in
+                        if let error = error {
+                            print("Data could not be saved: \(error).")
+                        } else {
+                            print("Data saved successfully!")
+                        }
+                    }
+                } else {
+                    let inBestBoard = db.child("bestBoard").child(post.postID)
+                    inBestBoard.removeValue()
+                }
             }
         }
     }
@@ -261,6 +281,7 @@ struct PostDetailView: View {
                 }
             }
             self.comments = loadedComments.sorted(by: { $0.timestamp < $1.timestamp })
+            self.commentCount = loadedComments.count
         }
     }
     

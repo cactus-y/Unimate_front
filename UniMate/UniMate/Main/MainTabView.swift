@@ -33,15 +33,15 @@ struct MainTabView: View {
                         Image(systemName: "list.clipboard")
                     }
                 
-                MessageView()
-                    .tabItem {
-                        Image(systemName: "paperplane")
-                    }
-                
-                NotificationView()
-                    .tabItem {
-                        Image(systemName: "bell")
-                    }
+//                MessageView()
+//                    .tabItem {
+//                        Image(systemName: "paperplane")
+//                    }
+//                
+//                NotificationView()
+//                    .tabItem {
+//                        Image(systemName: "bell")
+//                    }
                 
                 UserView()
                     .tabItem {

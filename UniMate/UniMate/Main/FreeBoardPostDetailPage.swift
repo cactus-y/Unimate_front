@@ -116,14 +116,23 @@ struct FreeBoardPostDetailView: View {
                             "university": newComment.university
                         ])
 
+                        // Fetch the current commentCount of the post
+                        let postDB = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("freeBoard").child(newComment.postID)
                         
-                        commentCount += 1
-                                let postDB = Database.database(url: "https://unimate-16065-default-rtdb.asia-southeast1.firebasedatabase.app").reference().child("posts").child(post.postID)
+                        postDB.observeSingleEvent(of: .value) { snapshot in
+                            if let postData = snapshot.value as? [String: Any] {
+                                var commentCount = postData["commentCount"] as? Int ?? 0
+                                commentCount += 1
+                                
+                                // Update the commentCount of the post
                                 postDB.updateChildValues(["commentCount": commentCount])
+                            }
+                        }
 
-                                comment = ""
+                        comment = ""
+                    }
 
-                    } label: {
+ label: {
                         Image(systemName: "pencil.line")
                             .padding(17)
                             .background(Color(UIColor(hexCode: "70BBF9")))

@@ -76,6 +76,7 @@ struct CreatePostView: View {
                         Text("완료")
                             .foregroundColor(.black)
                     })
+                    .disabled(title == "" || postContent == "")
                 }
             }
         }

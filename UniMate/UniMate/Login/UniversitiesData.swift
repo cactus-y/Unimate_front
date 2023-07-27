@@ -647,7 +647,7 @@ public let allowedDomains = [
 "howon.ac.kr",
 "hongik.ac.kr",
 "hscu.ac.kr",
-"g. skku.edu"
+"g.skku.edu"
 ];
 
 public let RankUniversity = [

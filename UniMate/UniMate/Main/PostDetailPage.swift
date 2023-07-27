@@ -94,7 +94,7 @@ struct PostDetailView: View {
                         Text(post.title)
                             .font(.title3)
                             .bold()
-                            .padding(.horizontal, 5)
+                            .padding(.vertical, 5)
                         
                         
                         
@@ -341,6 +341,7 @@ struct PostDetailView: View {
                 }
             }
             self.comments = loadedComments.sorted(by: { $0.timestamp < $1.timestamp })
+            self.commentCount = self.comments.count
         }
     }
     

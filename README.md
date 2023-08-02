@@ -27,7 +27,7 @@
 
 또한 대학교 이메일로 인증을 하기에 대학생만이 사용 가능하다.
 
-<img src="https://github.com/cactus-y/Unimate_front/assets/106647507/72dd800b-93d1-4629-bdb9-e25123e57a94" width="600" height="400">
+<img src="https://github.com/cactus-y/Unimate_front/assets/106647507/72dd800b-93d1-4629-bdb9-e25123e57a94" width="300" height="200">
 
 
 

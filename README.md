@@ -17,7 +17,8 @@
 
 만약 학교이메일이 아니면 회원가입을 할 수 없는걸 유의하자.
 
-![KakaoTalk_Photo_2023-07-27-19-40-00 001](https://github.com/cactus-y/Unimate_front/assets/55349972/af108c54-ed77-43c4-a09c-a8e9288b2a9d)
+<img src="https://github.com/cactus-y/Unimate_front/assets/106647507/ea8fcb76-fe31-41f4-901c-ef632f05afb3" width="400" height="810">
+
 
 ---
 
@@ -27,7 +28,7 @@
 
 또한 대학교 이메일로 인증을 하기에 대학생만이 사용 가능하다.
 
-<img src="https://github.com/cactus-y/Unimate_front/assets/106647507/72dd800b-93d1-4629-bdb9-e25123e57a94" width="300" height="200">
+<img src="https://github.com/cactus-y/Unimate_front/assets/106647507/72dd800b-93d1-4629-bdb9-e25123e57a94" width="400" height="810">
 
 
 

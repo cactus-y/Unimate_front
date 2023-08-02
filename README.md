@@ -40,7 +40,7 @@
 
 다른 대학의 학생들과 함께 의견을 교류 할 수 있다.
 
-![KakaoTalk_Photo_2023-07-27-19-40-00 002](https://github.com/cactus-y/Unimate_front/assets/55349972/eb7bcfda-e7e4-49e0-87b0-563c20221552)
+<img src = "https://github.com/cactus-y/Unimate_front/assets/55349972/eb7bcfda-e7e4-49e0-87b0-563c20221552" width="400" height="810">
 
 
 ---
@@ -51,7 +51,7 @@
 
 나의 학교를 더 높은 위치로!
 
-![IMG_E51B5B504D4D-1](https://github.com/cactus-y/Unimate_front/assets/106647507/cf563ff4-cb53-479b-a6fe-8df513d8c942)
+<img src = "https://github.com/cactus-y/Unimate_front/assets/106647507/cf563ff4-cb53-479b-a6fe-8df513d8c942" width ="400" height="810">
 
 학생들 간의 건전한 경쟁을 유도할 수 있다.
 
